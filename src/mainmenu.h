@@ -4,20 +4,18 @@
 
 #include <SFML/Graphics.hpp>
 
-class MainMenu
-{
-public:
+class MainMenu {
+   public:
     enum class MenuResult { Nothing, Exit, Play };
 
-    struct MenuItem
-    {
+    struct MenuItem {
         sf::Rect<int> rect;
         MenuResult action;
     };
 
     MenuResult show(sf::RenderWindow& window);
 
-private:
+   private:
     MenuResult getMenuResponse(sf::RenderWindow& window);
     MenuResult handleClick(int x, int y);
     std::vector<MenuItem> menuItems;

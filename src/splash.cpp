@@ -1,10 +1,8 @@
 #include "splash.h"
 
-void SplashScreen::show(sf::RenderWindow& renderWindow)
-{
+void SplashScreen::show(sf::RenderWindow& renderWindow) {
     sf::Texture splashTx;
-    if (!splashTx.loadFromFile("res/splash.jpg"))
-    {
+    if (!splashTx.loadFromFile("res/splash.jpg")) {
         return;
     }
 
@@ -14,14 +12,11 @@ void SplashScreen::show(sf::RenderWindow& renderWindow)
     renderWindow.display();
 
     sf::Event event;
-    while (true)
-    {
-        if (renderWindow.pollEvent(event) && (
-            event.type == sf::Event::EventType::KeyPressed ||
-            event.type == sf::Event::EventType::MouseButtonPressed ||
-            event.type == sf::Event::EventType::Closed
-            )
-            ) {
+    while (true) {
+        if (renderWindow.pollEvent(event) &&
+            (event.type == sf::Event::EventType::KeyPressed ||
+             event.type == sf::Event::EventType::MouseButtonPressed ||
+             event.type == sf::Event::EventType::Closed)) {
             return;
         }
     }

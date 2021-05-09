@@ -2,8 +2,7 @@
 
 #include <iostream>
 
-MainMenu::MenuResult MainMenu::show(sf::RenderWindow& window)
-{
+MainMenu::MenuResult MainMenu::show(sf::RenderWindow& window) {
     // Load menu image from file
     sf::Texture mainMenuTx;
     mainMenuTx.loadFromFile("res/mainmenu.png");
@@ -36,12 +35,9 @@ MainMenu::MenuResult MainMenu::show(sf::RenderWindow& window)
     return getMenuResponse(window);
 }
 
-MainMenu::MenuResult MainMenu::handleClick(int x, int y)
-{
-    for (const auto& menuItem : menuItems)
-    {
-        if (menuItem.rect.contains(x, y))
-        {
+MainMenu::MenuResult MainMenu::handleClick(int x, int y) {
+    for (const auto& menuItem : menuItems) {
+        if (menuItem.rect.contains(x, y)) {
             return menuItem.action;
         }
     }
@@ -49,21 +45,16 @@ MainMenu::MenuResult MainMenu::handleClick(int x, int y)
     return MenuResult::Nothing;
 }
 
-MainMenu::MenuResult MainMenu::getMenuResponse(sf::RenderWindow& window)
-{
+MainMenu::MenuResult MainMenu::getMenuResponse(sf::RenderWindow& window) {
     sf::Event event;
 
-    while (true)
-    {
-        if (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::MouseButtonPressed)
-            {
+    while (true) {
+        if (window.pollEvent(event)) {
+            if (event.type == sf::Event::MouseButtonPressed) {
                 return handleClick(event.mouseButton.x, event.mouseButton.y);
             }
 
-            if (event.type == sf::Event::Closed)
-            {
+            if (event.type == sf::Event::Closed) {
                 return MenuResult::Exit;
             }
         }

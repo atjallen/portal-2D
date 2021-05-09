@@ -154,16 +154,25 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\game.cpp" />
+    <ClCompile Include="src\gameobject.cpp" />
+    <ClCompile Include="src\gameobjectmanager.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\mainmenu.cpp" />
+    <ClCompile Include="src\player.cpp" />
     <ClCompile Include="src\splash.cpp" />
+    <ClCompile Include="src\visiblegameobject.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\gameobject.h" />
     <ClInclude Include="src\game.h" />
+    <ClInclude Include="src\gameobjectmanager.h" />
     <ClInclude Include="src\mainmenu.h" />
+    <ClInclude Include="src\player.h" />
     <ClInclude Include="src\splash.h" />
+    <ClInclude Include="src\visiblegameobject.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include=".clang-format" />
     <None Include=".gitignore" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
