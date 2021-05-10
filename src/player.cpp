@@ -1,41 +1,44 @@
 #include "player.h"
 
-#include <cassert>
+#include "sprite.h"
+#include "transform.h"
 
-Player::Player()
-    : VisibleGameObject(),
-      velocity(0),
-      maxVelocity(600.0f),
-      acceleration(10.0f),
-      drag(2.0f) {
-    load("res/player.png");
-    assert(loaded);
+Player::Player() /*
+        velocity(0),
+        maxVelocity(600.0f),
+        acceleration(10.0f),
+        drag(2.0f)*/
+{
+    createComponent<Transform>();
 
-    sprite.setOrigin(sprite.getScale().x / 2, sprite.getScale().y / 2);
+    auto& sprite = createComponent<Sprite>();
+    sprite.loadTexture("res/player.png");
 }
 
 void Player::update(const sf::Time& frameTime) {
-    // Accelerate according to player input
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-        velocity -= acceleration;
-    }
+    GameObject::update(frameTime);
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-        velocity += acceleration;
-    }
+    //// Accelerate according to player input
+    // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+    //    velocity -= acceleration;
+    //}
 
-    // Restrict velocity to max and min values
-    if (velocity > maxVelocity) {
-        velocity = maxVelocity;
-    }
+    // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+    //    velocity += acceleration;
+    //}
 
-    if (velocity < -maxVelocity) {
-        velocity = -maxVelocity;
-    }
+    //// Restrict velocity to max and min values
+    // if (velocity > maxVelocity) {
+    //    velocity = maxVelocity;
+    //}
 
-    // Apply drag
-    // velocity /= drag;
+    // if (velocity < -maxVelocity) {
+    //    velocity = -maxVelocity;
+    //}
 
-    // Move player
-    move(sf::Vector2f(1, 0) * velocity * frameTime.asSeconds());
+    //// Apply drag
+    //// velocity /= drag;
+
+    //// Move player
+    // move(sf::Vector2f(1, 0) * velocity * frameTime.asSeconds());
 }

@@ -1,17 +1,17 @@
 #pragma once
 
-#include "visiblegameobject.h"
+#include "gameobject.h"
 
-class Player : public VisibleGameObject {
+class Player : public GameObject {
    public:
     Player();
     ~Player() = default;
 
-    void update(const sf::Time& frameTime);
+    virtual void update(const sf::Time& frameTime);
 
-   private:
-    float velocity;
-    float maxVelocity;
-    float acceleration;
-    float drag;
+   //private:
+   // float velocity;
+   // float maxVelocity;
+   // float acceleration;
+   // float drag;
 };

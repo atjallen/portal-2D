@@ -1,8 +1,11 @@
 #include "game.h"
 
 #include "mainmenu.h"
-#include "player.h"
 #include "splash.h"
+
+#include "player.h"
+
+#include "transform.h"
 
 void Game::start() {
     if (gameState != GameState::Uninitialised) {
@@ -12,9 +15,9 @@ void Game::start() {
     mainWindow.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32),
                       "Portal 2D");
 
-    Player player;
-    player.setPosition(sf::Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2));
-    gameObjectManager.addVisibleGameObject("Player", player);
+    auto& player = gameObjectManager.create<Player>("Player");
+    player.getComponent<Transform>()->setPosition(
+        sf::Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2));
 
     gameState = GameState::Playing;
 

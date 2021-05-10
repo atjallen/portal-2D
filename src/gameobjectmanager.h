@@ -6,7 +6,6 @@
 #include <set>
 
 #include "gameobject.h"
-#include "visiblegameobject.h"
 
 class GameObjectManager {
    public:
@@ -14,40 +13,28 @@ class GameObjectManager {
     ~GameObjectManager() = default;
 
     template <typename GameObjectType>
-    void addGameObject(const std::string& name,
-                       const GameObjectType& gameObject);
-    template <typename VisibleGameObjectType>
-    void addVisibleGameObject(const std::string& name,
-                              const VisibleGameObjectType& visibleGameObject);
+    GameObjectType& create(const std::string& name);
+    template <typename GameObjectType>
+    GameObjectType& get(const std::string& name);
     void remove(const std::string& name);
-    GameObject& get(const std::string& name);
-    int getObjectCount() const;
 
     void drawAll(sf::RenderWindow& window);
     void updateAll(const sf::Time& frameTime);
 
    private:
-    std::map<std::string, std::unique_ptr<GameObject>> gameObjects;
-    std::set<std::string> visibleGameObjects;
+    std::map<std::string, std::unique_ptr<GameObject>> nameToGameObjectPtr;
 };
 
-// FIXME: This can probably be better
 template <typename GameObjectType>
-void GameObjectManager::addGameObject(const std::string& name,
-                                      const GameObjectType& gameObject) {
+inline GameObjectType& GameObjectManager::create(const std::string& name) {
     static_assert(std::is_base_of<GameObject, GameObjectType>::value,
-                  "Derived not derived from base");
-    gameObjects[name] = std::make_unique<GameObjectType>(gameObject);
+                  "Class not subclass of GameObject");
+    nameToGameObjectPtr[name] = std::make_unique<GameObjectType>();
+    return static_cast<GameObjectType&>(*nameToGameObjectPtr[name]);
 }
 
-template <typename VisibleGameObjectType>
-void GameObjectManager::addVisibleGameObject(
-    const std::string& name,
-    const VisibleGameObjectType& visibleGameObject) {
-    static_assert(
-        std::is_base_of<VisibleGameObject, VisibleGameObjectType>::value,
-        "Derived not derived from base");
-    gameObjects[name] =
-        std::make_unique<VisibleGameObjectType>(visibleGameObject);
-    visibleGameObjects.insert(name);
+template <typename GameObjectType>
+inline GameObjectType& GameObjectManager::get(const std::string& name) {
+    return static_cast<GameObjectType&>(nameToGameObjectPtr.at(name));
 }
+

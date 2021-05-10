@@ -153,6 +153,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\component.cpp" />
     <ClCompile Include="src\game.cpp" />
     <ClCompile Include="src\gameobject.cpp" />
     <ClCompile Include="src\gameobjectmanager.cpp" />
@@ -160,16 +161,19 @@
     <ClCompile Include="src\mainmenu.cpp" />
     <ClCompile Include="src\player.cpp" />
     <ClCompile Include="src\splash.cpp" />
-    <ClCompile Include="src\visiblegameobject.cpp" />
+    <ClCompile Include="src\sprite.cpp" />
+    <ClCompile Include="src\transform.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\component.h" />
     <ClInclude Include="src\gameobject.h" />
     <ClInclude Include="src\game.h" />
     <ClInclude Include="src\gameobjectmanager.h" />
     <ClInclude Include="src\mainmenu.h" />
     <ClInclude Include="src\player.h" />
     <ClInclude Include="src\splash.h" />
-    <ClInclude Include="src\visiblegameobject.h" />
+    <ClInclude Include="src\sprite.h" />
+    <ClInclude Include="src\transform.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".clang-format" />
