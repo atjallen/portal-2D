@@ -5,7 +5,7 @@
 #include <memory>
 #include <set>
 
-#include "gameobject.h"
+#include "gameobjects/gameobject.h"
 
 class GameObjectManager {
    public:

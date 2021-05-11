@@ -3,9 +3,9 @@
 #include "mainmenu.h"
 #include "splash.h"
 
-#include "player.h"
+#include "gameobjects/player.h"
 
-#include "transform.h"
+#include "components/transform.h"
 
 void Game::start() {
     if (gameState != GameState::Uninitialised) {

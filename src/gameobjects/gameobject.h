@@ -7,7 +7,7 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "component.h"
+#include "../components/component.h"
 
 class GameObject {
    public:

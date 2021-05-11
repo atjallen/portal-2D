@@ -1,7 +1,7 @@
 #include "player.h"
 
-#include "sprite.h"
-#include "transform.h"
+#include "../components/sprite.h"
+#include "../components/transform.h"
 
 Player::Player() /*
         velocity(0),

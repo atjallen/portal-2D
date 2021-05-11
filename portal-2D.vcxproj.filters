@@ -30,19 +30,19 @@
     <ClCompile Include="src\gameobjectmanager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\player.cpp">
+    <ClCompile Include="src\components\component.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\transform.cpp">
+    <ClCompile Include="src\components\sprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\gameobject.cpp">
+    <ClCompile Include="src\components\transform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\component.cpp">
+    <ClCompile Include="src\gameobjects\gameobject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\sprite.cpp">
+    <ClCompile Include="src\gameobjects\player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -59,19 +59,19 @@
     <ClInclude Include="src\gameobjectmanager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\gameobject.h">
+    <ClInclude Include="src\components\component.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\player.h">
+    <ClInclude Include="src\components\sprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\component.h">
+    <ClInclude Include="src\components\transform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\transform.h">
+    <ClInclude Include="src\gameobjects\gameobject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\sprite.h">
+    <ClInclude Include="src\gameobjects\player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
