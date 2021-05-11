@@ -22,3 +22,7 @@ void Physics::setGravity(float gravity) {
 void Physics::setVerticalVelocity(float verticalVelocity) {
     velocity.y = verticalVelocity;
 }
+
+void Physics::addHorizontalVelocity(float addAmount) {
+    velocity.x += addAmount;
+}

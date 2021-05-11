@@ -12,6 +12,7 @@ class Physics : public Component {
 
     void setGravity(float gravity);
     void setVerticalVelocity(float verticalVelocity);
+    void addHorizontalVelocity(float addAmount);
 
    private:
     float gravity;
