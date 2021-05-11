@@ -6,8 +6,9 @@
 
 class Game {
    public:
-    static const int WINDOW_WIDTH = 1920;
-    static const int WINDOW_HEIGHT = 1080;
+    static const int WINDOW_WIDTH;
+    static const int WINDOW_HEIGHT;
+    static const float FIXED_UPDATE_INTERVAL;
 
     static void start();
 
@@ -24,7 +25,8 @@ class Game {
     static GameState gameState;
     static sf::RenderWindow mainWindow;
     static GameObjectManager gameObjectManager;
-    static sf::Clock frameTimeClock;
+    static sf::Clock updateClock;
+    static sf::Clock fixedUpdateClock;
 
     static void gameLoop();
 

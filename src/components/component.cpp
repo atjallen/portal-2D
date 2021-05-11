@@ -9,3 +9,7 @@ void Component::draw(sf::RenderWindow& window) {
 void Component::update(const sf::Time& frameTime) {
     // Do nothing
 }
+
+void Component::fixedUpdate(const sf::Time& frameTime) {
+    // Do nothing
+}

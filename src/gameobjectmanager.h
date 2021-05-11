@@ -20,6 +20,7 @@ class GameObjectManager {
 
     void drawAll(sf::RenderWindow& window);
     void updateAll(const sf::Time& frameTime);
+    void fixedUpdateAll(const sf::Time& frameTime);
 
    private:
     std::map<std::string, std::unique_ptr<GameObject>> nameToGameObjectPtr;

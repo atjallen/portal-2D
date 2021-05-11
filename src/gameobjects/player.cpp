@@ -1,5 +1,6 @@
 #include "player.h"
 
+#include "../components/physics.h"
 #include "../components/sprite.h"
 #include "../components/transform.h"
 
@@ -10,6 +11,8 @@ Player::Player() /*
         drag(2.0f)*/
 {
     createComponent<Transform>();
+
+    createComponent<Physics>();
 
     auto& sprite = createComponent<Sprite>();
     sprite.loadTexture("res/player.png");

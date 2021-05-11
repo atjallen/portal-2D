@@ -15,3 +15,9 @@ void GameObjectManager::updateAll(const sf::Time& frameTime) {
         nameGameObjectPtrPair.second->update(frameTime);
     }
 }
+
+void GameObjectManager::fixedUpdateAll(const sf::Time& frameTime) {
+    for (auto& nameGameObjectPtrPair : nameToGameObjectPtr) {
+        nameGameObjectPtrPair.second->fixedUpdate(frameTime);
+    }
+}

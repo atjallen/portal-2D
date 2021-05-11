@@ -7,6 +7,16 @@
 
 #include "components/transform.h"
 
+const int Game::WINDOW_WIDTH = 1920;
+const int Game::WINDOW_HEIGHT = 1080;
+const float Game::FIXED_UPDATE_INTERVAL = 0.02f;
+
+Game::GameState Game::gameState = GameState::Uninitialised;
+sf::RenderWindow Game::mainWindow;
+GameObjectManager Game::gameObjectManager;
+sf::Clock Game::updateClock;
+sf::Clock Game::fixedUpdateClock;
+
 void Game::start() {
     if (gameState != GameState::Uninitialised) {
         return;
@@ -41,7 +51,12 @@ void Game::gameLoop() {
 
             case GameState::Playing: {
                 mainWindow.clear(sf::Color(0, 0, 0));
-                gameObjectManager.updateAll(frameTimeClock.restart());
+                gameObjectManager.updateAll(updateClock.restart());
+                if (fixedUpdateClock.getElapsedTime().asSeconds() >
+                    FIXED_UPDATE_INTERVAL) {
+                    gameObjectManager.fixedUpdateAll(
+                        fixedUpdateClock.restart());
+                }
                 gameObjectManager.drawAll(mainWindow);
                 mainWindow.display();
 
@@ -89,8 +104,3 @@ void Game::showMenu() {
         }
     }
 }
-
-Game::GameState Game::gameState = GameState::Uninitialised;
-sf::RenderWindow Game::mainWindow;
-GameObjectManager Game::gameObjectManager;
-sf::Clock Game::frameTimeClock;

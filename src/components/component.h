@@ -11,6 +11,7 @@ class Component {
 
     virtual void draw(sf::RenderWindow& window);
     virtual void update(const sf::Time& frameTime);
+    virtual void fixedUpdate(const sf::Time& frameTime);
 
    protected:
     GameObject& gameObject;

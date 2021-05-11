@@ -11,3 +11,9 @@ void GameObject::update(const sf::Time& frameTime) {
         componentPtr->update(frameTime);
     }
 }
+
+void GameObject::fixedUpdate(const sf::Time& frameTime) {
+    for (auto& componentPtr : componentPtrs) {
+        componentPtr->fixedUpdate(frameTime);
+    }
+}

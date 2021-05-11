@@ -5,7 +5,7 @@
 class Player : public GameObject {
    public:
     Player();
-    ~Player() = default;
+    virtual ~Player() = default;
 
     virtual void update(const sf::Time& frameTime);
 
