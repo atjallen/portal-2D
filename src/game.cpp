@@ -36,6 +36,14 @@ void Game::start() {
     mainWindow.close();
 }
 
+bool Game::isUnderFloor(const sf::Rect<float>& boundingBox) {
+    return boundingBox.top + boundingBox.height >= WINDOW_HEIGHT;
+}
+
+float Game::amountUnderFloor(const sf::Rect<float>& boundingBox) {
+    return (boundingBox.top + boundingBox.height) - WINDOW_HEIGHT;
+}
+
 void Game::gameLoop() {
     while (true) {
         switch (gameState) {

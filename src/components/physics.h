@@ -11,6 +11,7 @@ class Physics : public Component {
     virtual void fixedUpdate(const sf::Time& frameTime);
 
     void setGravity(float gravity);
+    void setVerticalVelocity(float verticalVelocity);
 
    private:
     float gravity;

@@ -12,6 +12,9 @@ class Game {
 
     static void start();
 
+    static bool isUnderFloor(const sf::Rect<float>& boundingBox);
+    static float amountUnderFloor(const sf::Rect<float>& boundingBox);
+
    private:
     enum class GameState {
         Uninitialised,

@@ -16,6 +16,8 @@ class Sprite : public Component {
 
     void loadTexture(const std::string& filename);
 
+    sf::Rect<float> getBoundingBox() const;
+
    private:
     bool loaded;
     sf::Sprite sprite;

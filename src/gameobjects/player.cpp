@@ -1,5 +1,6 @@
 #include "player.h"
 
+#include "../components/collision.h"
 #include "../components/physics.h"
 #include "../components/sprite.h"
 #include "../components/transform.h"
@@ -16,6 +17,9 @@ Player::Player() /*
 
     auto& sprite = createComponent<Sprite>();
     sprite.loadTexture("res/player.png");
+
+    auto& collision = createComponent<Collision>();
+    collision.setBoundingBox(sprite.getBoundingBox());
 }
 
 void Player::update(const sf::Time& frameTime) {

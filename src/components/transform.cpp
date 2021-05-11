@@ -14,6 +14,10 @@ sf::Vector2f Transform::getPosition() const {
     return position;
 }
 
+void Transform::setPositionY(float y) {
+    position.y = y;
+}
+
 void Transform::move(const sf::Vector2f& moveBy) {
     position += moveBy;
 }

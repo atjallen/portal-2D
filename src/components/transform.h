@@ -12,6 +12,8 @@ class Transform : public Component {
 
     void setPosition(const sf::Vector2f& position);
     sf::Vector2f getPosition() const;
+    void setPositionY(float y);
+
     void move(const sf::Vector2f& moveBy);
 
    private:
