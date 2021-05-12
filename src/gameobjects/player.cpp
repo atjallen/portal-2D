@@ -10,7 +10,7 @@ Player::Player()
       collision(createComponent<Collision>()),
       sprite(createComponent<Sprite>()) {
     sprite.loadTexture("res/player.png");
-    collision.setBoundingBox(sprite.getBoundingBox());
+    collision.setBoundingBox(sprite.getSprite().getGlobalBounds());
 }
 
 void Player::fixedUpdate(const sf::Time& frameTime) {

@@ -3,9 +3,12 @@
 #include <cmath>
 #include <string>
 
+#include <SFML/Graphics.hpp>
+
 #include "mainmenu.h"
 #include "splash.h"
 
+#include "gameobjects/floor.h"
 #include "gameobjects/player.h"
 
 #include "components/transform.h"
@@ -43,6 +46,11 @@ void Game::start() {
     auto& player = gameObjectManager.create<Player>("Player");
     player.getComponent<Transform>()->setPosition(
         sf::Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2));
+
+    auto& floor = gameObjectManager.create<Floor>("Floor");
+    floor.getComponent<Transform>()->setPosition(sf::Vector2f(100, 100));
+    floor.setDimensions(sf::Vector2f(200, 300));
+
 
     gameState = GameState::Playing;
 

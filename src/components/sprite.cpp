@@ -24,8 +24,12 @@ void Sprite::loadTexture(const std::string& filename) {
     }
 }
 
-sf::Rect<float> Sprite::getBoundingBox() const {
-    return sprite.getGlobalBounds();
+sf::Texture& Sprite::getTexture() {
+    return texture;
+}
+
+sf::Sprite& Sprite::getSprite() {
+    return sprite;
 }
 
 void Sprite::draw(sf::RenderWindow& window) {

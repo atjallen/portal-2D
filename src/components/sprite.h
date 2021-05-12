@@ -14,15 +14,16 @@ class Sprite : public Component {
     virtual void draw(sf::RenderWindow& window);
     virtual void update(const sf::Time& frameTime);
 
-    void loadTexture(const std::string& filename);
+    sf::Texture& getTexture();
+    sf::Sprite& getSprite();
 
-    sf::Rect<float> getBoundingBox() const;
+    void loadTexture(const std::string& filename);
 
    private:
     bool loaded;
-    sf::Sprite sprite;
-    sf::Texture texture;
     std::string filename;
+    sf::Texture texture;
+    sf::Sprite sprite;
 
     Transform& transform;
 };
