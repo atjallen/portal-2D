@@ -10,11 +10,13 @@ class Game {
     static const int WINDOW_HEIGHT;
     static const float FIXED_UPDATE_INTERVAL;
     static const float FPS_COUNTER_UPDATE_INTERVAL;
+    static const float TOUCHING_TOLERANCE;
 
     static void start();
 
     static bool isUnderFloor(const sf::Rect<float>& boundingBox);
     static float amountUnderFloor(const sf::Rect<float>& boundingBox);
+    static bool isOnFloor(const sf::Rect<float>& boundingBox);
 
    private:
     enum class GameState {

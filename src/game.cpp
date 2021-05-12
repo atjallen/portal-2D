@@ -1,5 +1,6 @@
 #include "game.h"
 
+#include <cmath>
 #include <string>
 
 #include "mainmenu.h"
@@ -13,6 +14,7 @@ const int Game::WINDOW_WIDTH = 1920;
 const int Game::WINDOW_HEIGHT = 1080;
 const float Game::FIXED_UPDATE_INTERVAL = 0.02f;
 const float Game::FPS_COUNTER_UPDATE_INTERVAL = 0.05f;
+const float Game::TOUCHING_TOLERANCE = 10.0f;
 
 Game::GameState Game::gameState = GameState::Uninitialised;
 sf::RenderWindow Game::mainWindow;
@@ -55,6 +57,11 @@ bool Game::isUnderFloor(const sf::Rect<float>& boundingBox) {
 
 float Game::amountUnderFloor(const sf::Rect<float>& boundingBox) {
     return (boundingBox.top + boundingBox.height) - WINDOW_HEIGHT;
+}
+
+bool Game::isOnFloor(const sf::Rect<float>& boundingBox) {
+    return std::abs((boundingBox.top + boundingBox.height) - WINDOW_HEIGHT) <
+           TOUCHING_TOLERANCE;
 }
 
 void Game::gameLoop() {

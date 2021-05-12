@@ -15,7 +15,8 @@ class Player : public GameObject {
     virtual void fixedUpdate(const sf::Time& frameTime);
 
    private:
-    float acceleration;
+    float runAcceleration;
+    float jumpPower;
 
     Transform& transform;
     Physics& physics;

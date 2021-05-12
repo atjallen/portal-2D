@@ -1,7 +1,10 @@
 #include "player.h"
 
+#include "../game.h"
+
 Player::Player()
-    : acceleration(0.5f),
+    : runAcceleration(0.5f),
+      jumpPower(10.0f),
       transform(createComponent<Transform>()),
       physics(createComponent<Physics>()),
       collision(createComponent<Collision>()),
@@ -13,12 +16,19 @@ Player::Player()
 void Player::fixedUpdate(const sf::Time& frameTime) {
     GameObject::fixedUpdate(frameTime);
 
-    // Accelerate according to player input
+    // Move left
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-        physics.addHorizontalVelocity(-acceleration);
+        physics.addHorizontalVelocity(-runAcceleration);
     }
 
+    // Move right
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-        physics.addHorizontalVelocity(acceleration);
+        physics.addHorizontalVelocity(runAcceleration);
+    }
+
+    // Jump
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) &&
+        Game::isOnFloor(collision.getBoundingBox())) {
+        physics.addVerticalVelocity(-jumpPower);
     }
 }

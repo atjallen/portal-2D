@@ -43,10 +43,18 @@ void Physics::setMaxVerticalVelocity(float maxVerticalVelocity) {
     this->maxVerticalVelocity = maxVerticalVelocity;
 }
 
+void Physics::setHorizontalVelocity(float horizontalVelocity) {
+    velocity.x = horizontalVelocity;
+}
+
 void Physics::setVerticalVelocity(float verticalVelocity) {
     velocity.y = verticalVelocity;
 }
 
 void Physics::addHorizontalVelocity(float addAmount) {
     velocity.x += addAmount;
+}
+
+void Physics::addVerticalVelocity(float addAmount) {
+    velocity.y += addAmount;
 }

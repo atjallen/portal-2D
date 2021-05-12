@@ -14,8 +14,10 @@ class Physics : public Component {
     void setMaxHorizontalVelocity(float maxHorizontalVelocity);
     void setMaxVerticalVelocity(float maxVerticalVelocity);
 
+    void setHorizontalVelocity(float horizontalVelocity);
     void setVerticalVelocity(float verticalVelocity);
     void addHorizontalVelocity(float addAmount);
+    void addVerticalVelocity(float addAmount);
 
    private:
     float gravity;

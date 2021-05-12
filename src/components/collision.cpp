@@ -25,6 +25,10 @@ void Collision::fixedUpdate(const sf::Time& frameTime) {
     }
 }
 
+sf::Rect<float> Collision::getBoundingBox() const {
+    return boundingBox;
+}
+
 void Collision::setBoundingBox(const sf::Rect<float>& boundingBox) {
     this->boundingBox = boundingBox;
 }
