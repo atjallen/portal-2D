@@ -9,6 +9,7 @@ class Game {
     static const int WINDOW_WIDTH;
     static const int WINDOW_HEIGHT;
     static const float FIXED_UPDATE_INTERVAL;
+    static const float FPS_COUNTER_UPDATE_INTERVAL;
 
     static void start();
 
@@ -30,6 +31,11 @@ class Game {
     static GameObjectManager gameObjectManager;
     static sf::Clock updateClock;
     static sf::Clock fixedUpdateClock;
+    static sf::Clock fpsClock;
+    static int frameCounter;
+
+    static sf::Font textFont;
+    static sf::Text fpsCounter;
 
     static void gameLoop();
 

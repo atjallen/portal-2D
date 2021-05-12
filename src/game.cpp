@@ -1,5 +1,7 @@
 #include "game.h"
 
+#include <string>
+
 #include "mainmenu.h"
 #include "splash.h"
 
@@ -10,12 +12,18 @@
 const int Game::WINDOW_WIDTH = 1920;
 const int Game::WINDOW_HEIGHT = 1080;
 const float Game::FIXED_UPDATE_INTERVAL = 0.02f;
+const float Game::FPS_COUNTER_UPDATE_INTERVAL = 0.05f;
 
 Game::GameState Game::gameState = GameState::Uninitialised;
 sf::RenderWindow Game::mainWindow;
 GameObjectManager Game::gameObjectManager;
 sf::Clock Game::updateClock;
 sf::Clock Game::fixedUpdateClock;
+sf::Clock Game::fpsClock;
+int Game::frameCounter = 0;
+
+sf::Font Game::textFont;
+sf::Text Game::fpsCounter;
 
 void Game::start() {
     if (gameState != GameState::Uninitialised) {
@@ -24,6 +32,11 @@ void Game::start() {
 
     mainWindow.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32),
                       "Portal 2D");
+
+    textFont.loadFromFile("res/arial.ttf");
+
+    fpsCounter.setFont(textFont);
+    fpsCounter.setFillColor(sf::Color::White);
 
     auto& player = gameObjectManager.create<Player>("Player");
     player.getComponent<Transform>()->setPosition(
@@ -59,15 +72,36 @@ void Game::gameLoop() {
 
             case GameState::Playing: {
                 mainWindow.clear(sf::Color(0, 0, 0));
+
+                // Display and/or update fps counter
+                mainWindow.draw(fpsCounter);
+                if (fpsClock.getElapsedTime().asSeconds() >
+                    FPS_COUNTER_UPDATE_INTERVAL) {
+                    fpsClock.restart();
+                    fpsCounter.setString(
+                        "FPS: " +
+                        std::to_string(static_cast<int>(
+                            frameCounter * (1 / FPS_COUNTER_UPDATE_INTERVAL))));
+                    frameCounter = 0;
+                }
+
+                // Update game objects
                 gameObjectManager.updateAll(updateClock.restart());
+
+                // Fixed update game objects
                 if (fixedUpdateClock.getElapsedTime().asSeconds() >
                     FIXED_UPDATE_INTERVAL) {
                     gameObjectManager.fixedUpdateAll(
                         fixedUpdateClock.restart());
                 }
+
+                // Draw game objects
                 gameObjectManager.drawAll(mainWindow);
+
+                // Display window
                 mainWindow.display();
 
+                // Handle events
                 sf::Event event;
                 if (mainWindow.pollEvent(event)) {
                     if (event.type == sf::Event::Closed) {
@@ -79,6 +113,8 @@ void Game::gameLoop() {
                         showMenu();
                     }
                 }
+
+                frameCounter++;
 
                 break;
             }
