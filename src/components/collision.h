@@ -9,7 +9,6 @@ class Collision : public Component {
     Collision(GameObject& gameObject);
     virtual ~Collision() = default;
 
-    virtual void update(const sf::Time& frameTime);
     virtual void fixedUpdate(const sf::Time& frameTime);
 
     sf::Rect<float> getBoundingBox() const;
@@ -17,7 +16,8 @@ class Collision : public Component {
     void setKinematic(bool kinematic);
 
    private:
-    sf::Rect<float> boundingBox;
+    float boundingBoxWidth;
+    float boundingBoxHeight;
     bool kinematic;
 
     Transform& transform;
