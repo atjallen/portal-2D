@@ -4,6 +4,7 @@
 #include <map>
 #include <memory>
 #include <set>
+#include <vector>
 
 #include "gameobjects/gameobject.h"
 
@@ -16,6 +17,7 @@ class GameObjectManager {
     GameObjectType& create(const std::string& name);
     template <typename GameObjectType>
     GameObjectType& get(const std::string& name);
+    std::vector<std::reference_wrapper<GameObject>> getAll();
     void remove(const std::string& name);
 
     void drawAll(sf::RenderWindow& window);

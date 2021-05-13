@@ -1,9 +1,13 @@
 #pragma once
-#pragma once
+
+#include <functional>
+#include <vector>
 
 #include <SFML/Graphics.hpp>
 
 #include "gameobjectmanager.h"
+
+#include "components/collision.h"
 
 class Game {
    public:
@@ -18,6 +22,9 @@ class Game {
     static bool isUnderFloor(const sf::Rect<float>& boundingBox);
     static float amountUnderFloor(const sf::Rect<float>& boundingBox);
     static bool isOnFloor(const sf::Rect<float>& boundingBox);
+
+    static std::vector<std::reference_wrapper<Collision>>
+    getAllCollisionComponents();
 
    private:
     enum class GameState {

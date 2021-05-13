@@ -76,6 +76,17 @@ bool Game::isOnFloor(const sf::Rect<float>& boundingBox) {
            TOUCHING_TOLERANCE;
 }
 
+std::vector<std::reference_wrapper<Collision>> Game::getAllCollisionComponents() {
+    std::vector<std::reference_wrapper<Collision>> collisions;
+    for (auto& gameObject : gameObjectManager.getAll()) {
+        auto* collider = gameObject.get().getComponent<Collision>();
+        if (collider) {
+            collisions.push_back(*collider);
+        }
+    }
+    return collisions;
+}
+
 void Game::gameLoop() {
     while (true) {
         switch (gameState) {
