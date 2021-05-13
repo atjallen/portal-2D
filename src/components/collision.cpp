@@ -7,6 +7,7 @@
 
 Collision::Collision(GameObject& gameObject)
     : Component(gameObject),
+      kinematic(false),
       transform(*gameObject.getComponent<Transform>()),
       physics(*gameObject.getComponent<Physics>()) {}
 
@@ -17,11 +18,14 @@ void Collision::update(const sf::Time& frameTime) {
 }
 
 void Collision::fixedUpdate(const sf::Time& frameTime) {
-    // Check whether collider has collided with the floor and if so stop movement
-    if (Game::isUnderFloor(boundingBox)) {
-        physics.setVerticalVelocity(0);
-        transform.setPositionY(transform.getPosition().y -
-                               Game::amountUnderFloor(boundingBox));
+    if (!kinematic) {
+        // Check whether collider has collided with the floor and if so stop
+        // movement
+        if (Game::isUnderFloor(boundingBox)) {
+            physics.setVerticalVelocity(0);
+            transform.setPositionY(transform.getPosition().y -
+                                   Game::amountUnderFloor(boundingBox));
+        }
     }
 }
 
@@ -32,4 +36,8 @@ sf::Rect<float> Collision::getBoundingBox() const {
 void Collision::setBoundingBoxDimensions(const sf::Vector2f& dimensions) {
     boundingBox.width = dimensions.x;
     boundingBox.height = dimensions.y;
+}
+
+void Collision::setKinematic(bool kinematic) {
+    this->kinematic = kinematic;
 }

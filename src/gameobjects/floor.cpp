@@ -8,6 +8,7 @@ Floor::Floor()
       sprite(createComponent<Sprite>()) {
     sprite.loadTexture("res/floor.png");
     sprite.getTexture().setRepeated(true);
+    collision.setKinematic(true);
 }
 
 void Floor::setDimensions(const sf::Vector2f& dimensions) {

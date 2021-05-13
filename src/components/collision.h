@@ -14,9 +14,11 @@ class Collision : public Component {
 
     sf::Rect<float> getBoundingBox() const;
     void setBoundingBoxDimensions(const sf::Vector2f& dimensions);
+    void setKinematic(bool kinematic);
 
    private:
     sf::Rect<float> boundingBox;
+    bool kinematic;
 
     Transform& transform;
     Physics& physics;

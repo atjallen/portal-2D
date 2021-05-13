@@ -36,6 +36,6 @@ inline GameObjectType& GameObjectManager::create(const std::string& name) {
 
 template <typename GameObjectType>
 inline GameObjectType& GameObjectManager::get(const std::string& name) {
-    return static_cast<GameObjectType&>(nameToGameObjectPtr.at(name));
+    return static_cast<GameObjectType&>(*nameToGameObjectPtr.at(name));
 }
 

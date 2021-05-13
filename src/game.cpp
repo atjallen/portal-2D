@@ -1,6 +1,7 @@
 #include "game.h"
 
 #include <cmath>
+#include <iostream>
 #include <string>
 
 #include <SFML/Graphics.hpp>
@@ -11,6 +12,8 @@
 #include "gameobjects/floor.h"
 #include "gameobjects/player.h"
 
+#include "components/collision.h"
+#include "components/sprite.h"
 #include "components/transform.h"
 
 const int Game::WINDOW_WIDTH = 1920;
@@ -47,10 +50,11 @@ void Game::start() {
     player.getComponent<Transform>()->setPosition(
         sf::Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2));
 
+    sf::Vector2f floorDimensions(WINDOW_WIDTH, 100);
     auto& floor = gameObjectManager.create<Floor>("Floor");
-    floor.getComponent<Transform>()->setPosition(sf::Vector2f(100, 100));
-    floor.setDimensions(sf::Vector2f(200, 300));
-
+    floor.setDimensions(floorDimensions);
+    floor.getComponent<Transform>()->setPosition(sf::Vector2f(
+        WINDOW_WIDTH / 2, WINDOW_HEIGHT - (floorDimensions.y / 2)));
 
     gameState = GameState::Playing;
 

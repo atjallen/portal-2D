@@ -28,4 +28,6 @@ class Sprite : public Component {
     sf::Sprite sprite;
 
     Transform& transform;
+
+    void resetOrigin();
 };
