@@ -17,6 +17,8 @@ class Sprite : public Component {
     sf::Texture& getTexture();
     sf::Sprite& getSprite();
 
+    void setDimensions(const sf::Vector2f& dimensions);
+
     void loadTexture(const std::string& filename);
 
    private:

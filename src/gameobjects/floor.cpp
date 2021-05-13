@@ -10,12 +10,9 @@ Floor::Floor()
     sprite.getTexture().setRepeated(true);
 }
 
-void Floor::setDimensions(const sf::Vector2f dimensions) {
+void Floor::setDimensions(const sf::Vector2f& dimensions) {
     this->width = dimensions.x;
     this->height = dimensions.y;
-    sf::Rect<float> boundingBox(transform.getPosition().x,
-                                transform.getPosition().y, this->width,
-                                this->height);
-    collision.setBoundingBox(boundingBox);
-    sprite.getSprite().setTextureRect(sf::Rect<int>(boundingBox));
+    collision.setBoundingBoxDimensions(dimensions);
+    sprite.setDimensions(dimensions);
 }

@@ -10,7 +10,10 @@ Player::Player()
       collision(createComponent<Collision>()),
       sprite(createComponent<Sprite>()) {
     sprite.loadTexture("res/player.png");
-    collision.setBoundingBox(sprite.getSprite().getGlobalBounds());
+    sprite.getSprite().setColor(sf::Color::Red);
+    auto spriteBoundingBox = sprite.getSprite().getGlobalBounds();
+    collision.setBoundingBoxDimensions(
+        sf::Vector2f(spriteBoundingBox.width, spriteBoundingBox.height));
 }
 
 void Player::fixedUpdate(const sf::Time& frameTime) {

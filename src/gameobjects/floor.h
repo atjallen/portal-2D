@@ -13,7 +13,7 @@ class Floor : public GameObject {
     Floor();
     virtual ~Floor() = default;
 
-    void setDimensions(const sf::Vector2f dimensions);
+    void setDimensions(const sf::Vector2f& dimensions);
 
    private:
     float width;

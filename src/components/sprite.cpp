@@ -16,7 +16,8 @@ void Sprite::loadTexture(const std::string& filename) {
     if (texture.loadFromFile(filename)) {
         this->filename = filename;
         sprite.setTexture(texture);
-        sprite.setOrigin(sprite.getScale().x / 2, sprite.getScale().y / 2);
+        auto boundingBox = sprite.getGlobalBounds();
+        sprite.setOrigin(boundingBox.width / 2, boundingBox.height / 2);
         loaded = true;
     } else {
         this->filename = "";
@@ -30,6 +31,12 @@ sf::Texture& Sprite::getTexture() {
 
 sf::Sprite& Sprite::getSprite() {
     return sprite;
+}
+
+void Sprite::setDimensions(const sf::Vector2f& dimensions) {
+    auto boundingBox = sprite.getGlobalBounds();
+    sprite.setTextureRect(sf::Rect<int>(boundingBox.left, boundingBox.top,
+                                        dimensions.x, dimensions.y));
 }
 
 void Sprite::draw(sf::RenderWindow& window) {

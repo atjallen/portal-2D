@@ -12,8 +12,8 @@ Collision::Collision(GameObject& gameObject)
 
 void Collision::update(const sf::Time& frameTime) {
     // Update bounding box position according to transform
-    boundingBox.left = transform.getPosition().x;
-    boundingBox.top = transform.getPosition().y;
+    boundingBox.left = transform.getPosition().x - (boundingBox.width / 2);
+    boundingBox.top = transform.getPosition().y - (boundingBox.height / 2);
 }
 
 void Collision::fixedUpdate(const sf::Time& frameTime) {
@@ -29,6 +29,7 @@ sf::Rect<float> Collision::getBoundingBox() const {
     return boundingBox;
 }
 
-void Collision::setBoundingBox(const sf::Rect<float>& boundingBox) {
-    this->boundingBox = boundingBox;
+void Collision::setBoundingBoxDimensions(const sf::Vector2f& dimensions) {
+    boundingBox.width = dimensions.x;
+    boundingBox.height = dimensions.y;
 }

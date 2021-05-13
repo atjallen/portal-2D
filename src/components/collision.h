@@ -13,7 +13,7 @@ class Collision : public Component {
     virtual void fixedUpdate(const sf::Time& frameTime);
 
     sf::Rect<float> getBoundingBox() const;
-    void setBoundingBox(const sf::Rect<float>& boundingBox);
+    void setBoundingBoxDimensions(const sf::Vector2f& dimensions);
 
    private:
     sf::Rect<float> boundingBox;
