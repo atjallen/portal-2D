@@ -48,7 +48,7 @@ void Game::start() {
 
     auto& player = gameObjectManager.create<Player>("Player");
     player.getComponent<Transform>()->setPosition(
-        sf::Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2));
+        sf::Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 200));
 
     sf::Vector2f floorDimensions(WINDOW_WIDTH, 100);
     auto& floor = gameObjectManager.create<Floor>("Floor");
@@ -56,12 +56,18 @@ void Game::start() {
     floor.getComponent<Transform>()->setPosition(sf::Vector2f(
         WINDOW_WIDTH / 2, WINDOW_HEIGHT - (floorDimensions.y / 2)));
 
-    sf::Vector2f floorDimensions2(100, 100);
-    auto& floor2 = gameObjectManager.create<Floor>("Floor2");
-    floor2.setDimensions(floorDimensions2);
-    floor2.getComponent<Transform>()->setPosition(sf::Vector2f(
+    sf::Vector2f obstacleDimensions(100, 100);
+    auto& obstacle = gameObjectManager.create<Floor>("Obstacle");
+    obstacle.setDimensions(obstacleDimensions);
+    obstacle.getComponent<Transform>()->setPosition(sf::Vector2f(
         WINDOW_WIDTH / 2,
-        WINDOW_HEIGHT - floorDimensions2.y - (floorDimensions2.y / 2)));
+        WINDOW_HEIGHT - obstacleDimensions.y - (obstacleDimensions.y / 2)));
+
+    sf::Vector2f ceilingDimensions(WINDOW_WIDTH, 100);
+    auto& ceiling = gameObjectManager.create<Floor>("Ceiling");
+    ceiling.setDimensions(ceilingDimensions);
+    ceiling.getComponent<Transform>()->setPosition(
+        sf::Vector2f(WINDOW_WIDTH / 2, 600));
 
     gameState = GameState::Playing;
 

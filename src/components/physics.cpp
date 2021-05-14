@@ -43,6 +43,10 @@ void Physics::setMaxVerticalVelocity(float maxVerticalVelocity) {
     this->maxVerticalVelocity = maxVerticalVelocity;
 }
 
+sf::Vector2f Physics::getVelocity() {
+    return velocity;
+}
+
 void Physics::setHorizontalVelocity(float horizontalVelocity) {
     velocity.x = horizontalVelocity;
 }

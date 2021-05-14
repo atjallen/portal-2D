@@ -31,12 +31,28 @@ void Collision::fixedUpdate(const sf::Time& frameTime) {
                 // thin bounding boxes but should do for now at least.
                 if (intersection.width < intersection.height) {
                     // Horizontal collision
-                    transform.setPositionX(transform.getPosition().x -
-                                           intersection.width);
+                    if (physics.getVelocity().x > 0) {
+                        // Rightwards collision
+                        transform.setPositionX(transform.getPosition().x -
+                                               intersection.width);
+                    } else {
+                        // Leftwards collision
+                        transform.setPositionX(transform.getPosition().x +
+                                               intersection.width);
+                    }
+                    physics.setHorizontalVelocity(0);
                 } else {
                     // Vertical collision
-                    transform.setPositionY(transform.getPosition().y -
-                                           intersection.height);
+                    if (physics.getVelocity().y > 0) {
+                        // Downwards collision
+                        transform.setPositionY(transform.getPosition().y -
+                                               intersection.height);
+                    } else {
+                        // Upwards collision
+                        transform.setPositionY(transform.getPosition().y +
+                                               intersection.height);
+                    }
+                    physics.setVerticalVelocity(0);
                 }
             }
         }

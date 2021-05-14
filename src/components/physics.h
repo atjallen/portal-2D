@@ -14,6 +14,7 @@ class Physics : public Component {
     void setMaxHorizontalVelocity(float maxHorizontalVelocity);
     void setMaxVerticalVelocity(float maxVerticalVelocity);
 
+    sf::Vector2f getVelocity();
     void setHorizontalVelocity(float horizontalVelocity);
     void setVerticalVelocity(float verticalVelocity);
     void addHorizontalVelocity(float addAmount);
