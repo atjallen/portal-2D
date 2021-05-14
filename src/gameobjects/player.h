@@ -17,6 +17,8 @@ class Player : public GameObject {
    private:
     float runAcceleration;
     float jumpPower;
+    float floorDrag;
+    float maxRunSpeed;
 
     Transform& transform;
     Physics& physics;
