@@ -4,7 +4,7 @@
 
 Player::Player()
     : runAcceleration(0.5f),
-      jumpPower(10.0f),
+      jumpPower(50.0f),
       transform(createComponent<Transform>()),
       physics(createComponent<Physics>()),
       collision(createComponent<Collision>()),
@@ -31,7 +31,7 @@ void Player::fixedUpdate(const sf::Time& frameTime) {
 
     // Jump
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) &&
-        Game::isOnFloor(collision.getBoundingBox())) {
+        Game::isOnFloor(*this)) {
         physics.addVerticalVelocity(-jumpPower);
     }
 }

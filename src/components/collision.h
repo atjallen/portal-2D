@@ -15,6 +15,9 @@ class Collision : public Component {
     void setBoundingBoxDimensions(const sf::Vector2f& dimensions);
     void setKinematic(bool kinematic);
 
+    bool isColliding(const Collision& other);
+    bool isTouchingBelow(const Collision& other);
+
    private:
     float boundingBoxWidth;
     float boundingBoxHeight;

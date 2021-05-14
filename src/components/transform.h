@@ -10,8 +10,9 @@ class Transform : public Component {
     Transform(GameObject& gameObject, const sf::Vector2f& initPosition);
     virtual ~Transform() = default;
 
-    void setPosition(const sf::Vector2f& position);
     sf::Vector2f getPosition() const;
+    void setPosition(const sf::Vector2f& position);
+    void setPositionX(float x);
     void setPositionY(float y);
 
     void move(const sf::Vector2f& moveBy);

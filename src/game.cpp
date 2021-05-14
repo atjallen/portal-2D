@@ -56,6 +56,13 @@ void Game::start() {
     floor.getComponent<Transform>()->setPosition(sf::Vector2f(
         WINDOW_WIDTH / 2, WINDOW_HEIGHT - (floorDimensions.y / 2)));
 
+    sf::Vector2f floorDimensions2(100, 100);
+    auto& floor2 = gameObjectManager.create<Floor>("Floor2");
+    floor2.setDimensions(floorDimensions2);
+    floor2.getComponent<Transform>()->setPosition(sf::Vector2f(
+        WINDOW_WIDTH / 2,
+        WINDOW_HEIGHT - floorDimensions2.y - (floorDimensions2.y / 2)));
+
     gameState = GameState::Playing;
 
     gameLoop();
@@ -63,23 +70,25 @@ void Game::start() {
     mainWindow.close();
 }
 
-bool Game::isUnderFloor(const sf::Rect<float>& boundingBox) {
-    return boundingBox.top + boundingBox.height >= WINDOW_HEIGHT;
+bool Game::isOnFloor(GameObject& gameObject) {
+    auto& gameObjectCollision = *gameObject.getComponent<Collision>();
+    auto floors = gameObjectManager.getAll<Floor>();
+    for (auto& floorWrap : floors) {
+        auto& floor = floorWrap.get();
+        auto& floorCollision = *floor.getComponent<Collision>();
+        if (gameObjectCollision.isTouchingBelow(floorCollision)) {
+            return true;
+        }
+    }
+    return false;
 }
 
-float Game::amountUnderFloor(const sf::Rect<float>& boundingBox) {
-    return (boundingBox.top + boundingBox.height) - WINDOW_HEIGHT;
-}
-
-bool Game::isOnFloor(const sf::Rect<float>& boundingBox) {
-    return std::abs((boundingBox.top + boundingBox.height) - WINDOW_HEIGHT) <
-           TOUCHING_TOLERANCE;
-}
-
-std::vector<std::reference_wrapper<Collision>> Game::getAllCollisionComponents() {
+std::vector<std::reference_wrapper<Collision>>
+Game::getAllCollisionComponents() {
     std::vector<std::reference_wrapper<Collision>> collisions;
-    for (auto& gameObject : gameObjectManager.getAll()) {
-        auto* collider = gameObject.get().getComponent<Collision>();
+    for (auto& gameObjectWrap : gameObjectManager.getAll()) {
+        auto& gameObject = gameObjectWrap.get();
+        auto* collider = gameObject.getComponent<Collision>();
         if (collider) {
             collisions.push_back(*collider);
         }

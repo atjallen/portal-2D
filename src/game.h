@@ -19,9 +19,7 @@ class Game {
 
     static void start();
 
-    static bool isUnderFloor(const sf::Rect<float>& boundingBox);
-    static float amountUnderFloor(const sf::Rect<float>& boundingBox);
-    static bool isOnFloor(const sf::Rect<float>& boundingBox);
+    static bool isOnFloor(GameObject& gameObject);
 
     static std::vector<std::reference_wrapper<Collision>>
     getAllCollisionComponents();

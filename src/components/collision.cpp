@@ -1,7 +1,5 @@
 #include "collision.h"
 
-#include <iostream>
-
 #include "../game.h"
 #include "../gameobjects/gameobject.h"
 
@@ -15,13 +13,32 @@ Collision::Collision(GameObject& gameObject)
 
 void Collision::fixedUpdate(const sf::Time& frameTime) {
     if (!kinematic) {
-        // Check whether collider has collided with the floor and if so stop
-        // movement
-        auto boundingBox = getBoundingBox();
-        if (Game::isUnderFloor(boundingBox)) {
-            physics.setVerticalVelocity(0);
-            transform.setPositionY(transform.getPosition().y -
-                                   Game::amountUnderFloor(boundingBox));
+        auto collisions = Game::getAllCollisionComponents();
+        for (auto& collisionWrap : collisions) {
+            auto& collision = collisionWrap.get();
+            sf::Rect<float> intersection;
+            if (&collision != this &&
+                this->getBoundingBox().intersects(collision.getBoundingBox(),
+                                                  intersection)) {
+                // Resolve collision
+                //
+                // TODO: Handle collision between two non-kinematic colliders
+                //
+                // To decide whether we are colliding horizontally or
+                // vertically, we look at which dimension of the intersecting
+                // rectangle is smaller and assume that this dimension is the
+                // colliding one. This isn't perfect of course due to incredibly
+                // thin bounding boxes but should do for now at least.
+                if (intersection.width < intersection.height) {
+                    // Horizontal collision
+                    transform.setPositionX(transform.getPosition().x -
+                                           intersection.width);
+                } else {
+                    // Vertical collision
+                    transform.setPositionY(transform.getPosition().y -
+                                           intersection.height);
+                }
+            }
         }
     }
 }
@@ -40,4 +57,14 @@ void Collision::setBoundingBoxDimensions(const sf::Vector2f& dimensions) {
 
 void Collision::setKinematic(bool kinematic) {
     this->kinematic = kinematic;
+}
+
+bool Collision::isColliding(const Collision& other) {
+    return getBoundingBox().intersects(other.getBoundingBox());
+}
+
+bool Collision::isTouchingBelow(const Collision& other) {
+    auto thisBoundingBox = getBoundingBox();
+    auto otherBoundingBox = other.getBoundingBox();
+    return thisBoundingBox.top + thisBoundingBox.height == otherBoundingBox.top;
 }
