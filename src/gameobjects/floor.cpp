@@ -1,12 +1,14 @@
 #include "floor.h"
 
+#include "../config.h"
+
 Floor::Floor()
     : width(0),
       height(0),
       transform(createComponent<Transform>()),
       collision(createComponent<Collision>()),
       sprite(createComponent<Sprite>()) {
-    sprite.loadTexture("res/floor.png");
+    sprite.loadTexture(Config::getTextureFilename("Floor"));
     sprite.getTexture().setRepeated(true);
     collision.setKinematic(true);
 }

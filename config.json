@@ -1,0 +1,15 @@
+{
+  "resources": {
+    "textures": {
+      "Player": "res/textures/player.png",
+      "Floor": "res/textures/floor.png"
+    },
+    "images": {
+      "MainMenu": "res/images/mainmenu.png",
+      "Splash": "res/images/splash.jpg"
+    },
+    "fonts": {
+      "Arial": "res/fonts/arial.ttf"
+    }
+  }
+}

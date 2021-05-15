@@ -2,6 +2,7 @@
 
 #include <cmath>
 
+#include "../config.h"
 #include "../game.h"
 
 Player::Player()
@@ -13,7 +14,7 @@ Player::Player()
       physics(createComponent<Physics>()),
       collision(createComponent<Collision>()),
       sprite(createComponent<Sprite>()) {
-    sprite.loadTexture("res/player.png");
+    sprite.loadTexture(Config::getTextureFilename("Player"));
     sprite.getSprite().setColor(sf::Color::Red);
     auto spriteBoundingBox = sprite.getSprite().getGlobalBounds();
     collision.setBoundingBoxDimensions(

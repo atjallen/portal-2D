@@ -6,6 +6,8 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "config.h"
+
 #include "mainmenu.h"
 #include "splash.h"
 
@@ -38,10 +40,12 @@ void Game::start() {
         return;
     }
 
+    Config::initialise("config.json");
+
     mainWindow.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32),
                       "Portal 2D");
 
-    textFont.loadFromFile("res/arial.ttf");
+    textFont.loadFromFile(Config::getFontFilename("Arial"));
 
     fpsCounter.setFont(textFont);
     fpsCounter.setFillColor(sf::Color::White);

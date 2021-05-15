@@ -2,10 +2,12 @@
 
 #include <iostream>
 
+#include "config.h"
+
 MainMenu::MenuResult MainMenu::show(sf::RenderWindow& window) {
     // Load menu image from file
     sf::Texture mainMenuTx;
-    mainMenuTx.loadFromFile("res/mainmenu.png");
+    mainMenuTx.loadFromFile(Config::getImageFilename("MainMenu"));
     sf::Sprite mainMenuSpr(mainMenuTx);
 
     // Setup clickable regions

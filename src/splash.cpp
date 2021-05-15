@@ -1,8 +1,10 @@
 #include "splash.h"
 
+#include "config.h"
+
 void SplashScreen::show(sf::RenderWindow& renderWindow) {
     sf::Texture splashTx;
-    if (!splashTx.loadFromFile("res/splash.jpg")) {
+    if (!splashTx.loadFromFile(Config::getImageFilename("Splash"))) {
         return;
     }
 

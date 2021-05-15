@@ -54,6 +54,9 @@
     <ClCompile Include="src\gameobjects\floor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\config.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game.h">
@@ -92,9 +95,13 @@
     <ClInclude Include="src\gameobjects\floor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
     <None Include=".clang-format" />
+    <None Include="config.json" />
   </ItemGroup>
 </Project>

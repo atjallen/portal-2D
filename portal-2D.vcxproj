@@ -96,7 +96,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Libraries\SFML\2.5.1-2017-x32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Libraries\SFML\2.5.1-2017-x32\include;C:\Libraries\nlohmann-json\3.9.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -156,6 +156,7 @@
     <ClCompile Include="src\components\collision.cpp" />
     <ClCompile Include="src\components\component.cpp" />
     <ClCompile Include="src\components\physics.cpp" />
+    <ClCompile Include="src\config.cpp" />
     <ClCompile Include="src\game.cpp" />
     <ClCompile Include="src\gameobjects\floor.cpp" />
     <ClCompile Include="src\gameobjects\gameobject.cpp" />
@@ -171,6 +172,7 @@
     <ClInclude Include="src\components\collision.h" />
     <ClInclude Include="src\components\component.h" />
     <ClInclude Include="src\components\physics.h" />
+    <ClInclude Include="src\config.h" />
     <ClInclude Include="src\gameobjects\floor.h" />
     <ClInclude Include="src\gameobjects\gameobject.h" />
     <ClInclude Include="src\game.h" />
@@ -184,6 +186,7 @@
   <ItemGroup>
     <None Include=".clang-format" />
     <None Include=".gitignore" />
+    <None Include="config.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
