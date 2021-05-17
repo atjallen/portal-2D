@@ -7,6 +7,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "config.h"
+#include "levelloader.h"
 
 #include "mainmenu.h"
 #include "splash.h"
@@ -50,28 +51,8 @@ void Game::start() {
     fpsCounter.setFont(textFont);
     fpsCounter.setFillColor(sf::Color::White);
 
-    auto& player = gameObjectManager.create<Player>("Player");
-    player.getComponent<Transform>()->setPosition(
-        sf::Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 200));
-
-    sf::Vector2f floorDimensions(WINDOW_WIDTH, 100);
-    auto& floor = gameObjectManager.create<Floor>("Floor");
-    floor.setDimensions(floorDimensions);
-    floor.getComponent<Transform>()->setPosition(sf::Vector2f(
-        WINDOW_WIDTH / 2, WINDOW_HEIGHT - (floorDimensions.y / 2)));
-
-    sf::Vector2f obstacleDimensions(100, 100);
-    auto& obstacle = gameObjectManager.create<Floor>("Obstacle");
-    obstacle.setDimensions(obstacleDimensions);
-    obstacle.getComponent<Transform>()->setPosition(sf::Vector2f(
-        WINDOW_WIDTH / 2,
-        WINDOW_HEIGHT - obstacleDimensions.y - (obstacleDimensions.y / 2)));
-
-    sf::Vector2f ceilingDimensions(WINDOW_WIDTH, 100);
-    auto& ceiling = gameObjectManager.create<Floor>("Ceiling");
-    ceiling.setDimensions(ceilingDimensions);
-    ceiling.getComponent<Transform>()->setPosition(
-        sf::Vector2f(WINDOW_WIDTH / 2, 600));
+    LevelLoader levelLoader(gameObjectManager);
+    levelLoader.loadLevelFile(Config::getLevelFilename("test"));
 
     gameState = GameState::Playing;
 

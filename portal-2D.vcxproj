@@ -161,6 +161,7 @@
     <ClCompile Include="src\gameobjects\floor.cpp" />
     <ClCompile Include="src\gameobjects\gameobject.cpp" />
     <ClCompile Include="src\gameobjectmanager.cpp" />
+    <ClCompile Include="src\levelloader.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\mainmenu.cpp" />
     <ClCompile Include="src\gameobjects\player.cpp" />
@@ -177,6 +178,7 @@
     <ClInclude Include="src\gameobjects\gameobject.h" />
     <ClInclude Include="src\game.h" />
     <ClInclude Include="src\gameobjectmanager.h" />
+    <ClInclude Include="src\levelloader.h" />
     <ClInclude Include="src\mainmenu.h" />
     <ClInclude Include="src\gameobjects\player.h" />
     <ClInclude Include="src\splash.h" />
@@ -187,6 +189,7 @@
     <None Include=".clang-format" />
     <None Include=".gitignore" />
     <None Include="config.json" />
+    <None Include="res\levels\test.lvl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

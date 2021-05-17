@@ -10,6 +10,9 @@
     },
     "fonts": {
       "Arial": "res/fonts/arial.ttf"
+    },
+    "levels": {
+      "test": "res/levels/test.lvl"
     }
   }
 }

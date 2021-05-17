@@ -20,3 +20,7 @@ std::string Config::getImageFilename(const std::string& imageName) {
 std::string Config::getFontFilename(const std::string& fontName) {
     return config["resources"]["fonts"][fontName].get<std::string>();
 }
+
+std::string Config::getLevelFilename(const std::string& levelName) {
+    return config["resources"]["levels"][levelName].get<std::string>();
+}
