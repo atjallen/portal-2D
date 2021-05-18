@@ -2,6 +2,8 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "../config.h"
+
 class GameObject;
 
 class Component {

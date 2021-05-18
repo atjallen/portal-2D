@@ -2,7 +2,6 @@
 
 #include <cmath>
 
-#include "../config.h"
 #include "../game.h"
 
 Player::Player()

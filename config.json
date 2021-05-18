@@ -1,8 +1,10 @@
 {
   "resources": {
     "textures": {
+      "Ceiling": "res/textures/ceiling.png",
+      "Floor": "res/textures/floor.png",
       "Player": "res/textures/player.png",
-      "Floor": "res/textures/floor.png"
+      "Wall": "res/textures/wall.png"
     },
     "images": {
       "MainMenu": "res/images/mainmenu.png",

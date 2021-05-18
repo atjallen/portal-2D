@@ -2,13 +2,11 @@
 
 #include <fstream>
 
+#include "gameobjects/ceiling.h"
 #include "gameobjects/floor.h"
 #include "gameobjects/player.h"
-
-// Temporary until these are properly implemented
-using Wall = Floor;
-using Ceiling = Floor;
-using WallNoCollision = Floor;
+#include "gameobjects/wall.h"
+#include "gameobjects/wallnocollision.h"
 
 const float LevelLoader::TILE_SIZE = 100.0f;
 

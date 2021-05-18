@@ -7,6 +7,8 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "../config.h"
+
 #include "../components/component.h"
 
 class GameObject {
