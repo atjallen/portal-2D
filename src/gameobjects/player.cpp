@@ -6,7 +6,7 @@
 
 Player::Player()
     : runAcceleration(0.5f),
-      jumpPower(50.0f),
+      jumpPower(10.0f),
       floorDrag(0.5f),
       maxRunSpeed(10.0f),
       transform(createComponent<Transform>()),

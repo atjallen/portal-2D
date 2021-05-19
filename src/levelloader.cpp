@@ -8,7 +8,7 @@
 #include "gameobjects/wall.h"
 #include "gameobjects/wallnocollision.h"
 
-const float LevelLoader::TILE_SIZE = 100.0f;
+const float LevelLoader::TILE_SIZE = 50.0f;
 
 LevelLoader::LevelLoader(GameObjectManager& gameObjectManager)
     : gom(gameObjectManager), structureCounter(0) {}
