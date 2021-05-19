@@ -82,5 +82,12 @@ bool Collision::isColliding(const Collision& other) {
 bool Collision::isTouchingBelow(const Collision& other) {
     auto thisBoundingBox = getBoundingBox();
     auto otherBoundingBox = other.getBoundingBox();
-    return thisBoundingBox.top + thisBoundingBox.height == otherBoundingBox.top;
+    // clang-format off
+    return
+        (thisBoundingBox.top + thisBoundingBox.height == otherBoundingBox.top) // Bounding box is touching other bounding box below
+        && !(
+            thisBoundingBox.left + thisBoundingBox.width < otherBoundingBox.left // Bounding box is to the left of other bounding box
+            || thisBoundingBox.left > otherBoundingBox.left + otherBoundingBox.width // Bounding box is to the right of other bounding box
+        );
+    // clang-format on`
 }
