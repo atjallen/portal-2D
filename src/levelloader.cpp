@@ -55,8 +55,8 @@ void LevelLoader::loadLevelFile(const std::string& filename) {
 }
 
 sf::Vector2f LevelLoader::gridCoordsToGameCoords(int x, int y) {
-    return sf::Vector2f(x * TILE_SIZE + TILE_SIZE / 2,
-                        y * TILE_SIZE + TILE_SIZE / 2);
+    return sf::Vector2f(x * TILE_SIZE + TILE_SIZE / 2 + TILE_SIZE,
+                        y * TILE_SIZE + TILE_SIZE / 2 + TILE_SIZE);
 }
 
 void LevelLoader::createPlayer(int x, int y) {
