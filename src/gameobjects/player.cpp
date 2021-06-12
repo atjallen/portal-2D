@@ -9,6 +9,7 @@ Player::Player()
       jumpPower(10.0f),
       floorDrag(0.5f),
       maxRunSpeed(10.0f),
+      portalGun(nullptr),
       transform(createComponent<Transform>()),
       physics(createComponent<Physics>()),
       collision(createComponent<Collision>()),
@@ -18,6 +19,17 @@ Player::Player()
     auto spriteBoundingBox = sprite.getSprite().getGlobalBounds();
     collision.setBoundingBoxDimensions(
         sf::Vector2f(spriteBoundingBox.width, spriteBoundingBox.height));
+}
+
+void Player::update(const sf::Time& frameTime) {
+    GameObject::update(frameTime);
+
+    if (portalGun) {
+        portalGun->getComponent<Transform>()->setPosition(
+            transform.getPosition() + sf::Vector2f(30, 0));
+        portalGun->getComponent<Transform>()->lookAt(
+            sf::Vector2f(Game::getMousePosition()));
+    }
 }
 
 void Player::fixedUpdate(const sf::Time& frameTime) {
@@ -39,8 +51,7 @@ void Player::fixedUpdate(const sf::Time& frameTime) {
 
     if (Game::isOnFloor(*this)) {
         // Jump
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) &&
-            Game::isOnFloor(*this)) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
             physics.addVerticalVelocity(-jumpPower);
         }
 
@@ -74,4 +85,8 @@ void Player::fixedUpdate(const sf::Time& frameTime) {
             physics.setHorizontalVelocity(-maxRunSpeed);
         }
     }
+}
+
+void Player::setPortalGun(PortalGun& portalGun) {
+    this->portalGun = &portalGun;
 }

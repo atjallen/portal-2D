@@ -163,6 +163,7 @@
     <ClCompile Include="src\gameobjects\floor.cpp" />
     <ClCompile Include="src\gameobjects\gameobject.cpp" />
     <ClCompile Include="src\gameobjectmanager.cpp" />
+    <ClCompile Include="src\gameobjects\portalgun.cpp" />
     <ClCompile Include="src\gameobjects\structure.cpp" />
     <ClCompile Include="src\gameobjects\wall.cpp" />
     <ClCompile Include="src\gameobjects\wallnocollision.cpp" />
@@ -178,6 +179,8 @@
     <ClInclude Include="src\components\collision.h" />
     <ClInclude Include="src\components\component.h" />
     <ClInclude Include="src\components\physics.h" />
+    <ClInclude Include="src\errors.h" />
+    <ClInclude Include="src\gameobjects\portalgun.h" />
     <ClInclude Include="src\gameobjects\wallnocollision.h" />
     <ClInclude Include="src\config.h" />
     <ClInclude Include="src\gameobjects\ceiling.h" />
@@ -188,12 +191,14 @@
     <ClInclude Include="src\gameobjectmanager.h" />
     <ClInclude Include="src\gameobjects\structure.h" />
     <ClInclude Include="src\gameobjects\wall.h" />
+    <ClInclude Include="src\hitinfo.h" />
     <ClInclude Include="src\levelloader.h" />
     <ClInclude Include="src\mainmenu.h" />
     <ClInclude Include="src\gameobjects\player.h" />
     <ClInclude Include="src\splash.h" />
     <ClInclude Include="src\components\sprite.h" />
     <ClInclude Include="src\components\transform.h" />
+    <ClInclude Include="src\util\vector.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".clang-format" />

@@ -1,27 +1,35 @@
 #include "transform.h"
 
+#include <iostream>
+
+#include "../util/vector.h"
+
 Transform::Transform(GameObject& gameObject)
-    : Transform(gameObject, sf::Vector2f()) {}
-
-Transform::Transform(GameObject& gameObject, const sf::Vector2f& initPosition)
-    : Component(gameObject), position(initPosition) {}
-
-sf::Vector2f Transform::getPosition() const {
-    return position;
-}
-
-void Transform::setPosition(const sf::Vector2f& position) {
-    this->position = position;
-}
+    : Component(gameObject), Transformable() {}
 
 void Transform::setPositionX(float x) {
-    position.x = x;
+    setPosition(x, getPosition().y);
 }
 
 void Transform::setPositionY(float y) {
-    position.y = y;
+    setPosition(getPosition().x, y);
 }
 
-void Transform::move(const sf::Vector2f& moveBy) {
-    position += moveBy;
+float Transform::getRotationRads() const {
+    return util::vector::degToRad(Transformable::getRotation());
+}
+
+void Transform::setRotationRads(float angle) {
+    Transformable::setRotation(util::vector::radToDeg(angle));
+}
+
+void Transform::rotateRads(float angle) {
+    Transformable::rotate(util::vector::radToDeg(angle));
+}
+
+void Transform::lookAt(const sf::Vector2f& lookAtPosition) {
+    auto lookAtVector = lookAtPosition - getPosition();
+    auto lookAtAngle =
+        util::vector::angleBetween(sf::Vector2f(1, 0), lookAtVector);
+    setRotationRads(lookAtAngle);
 }

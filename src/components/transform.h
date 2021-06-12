@@ -1,22 +1,20 @@
 #pragma once
 
-#include <SFML/System.hpp>
+#include <SFML/Graphics.hpp>
 
 #include "component.h"
 
-class Transform : public Component {
+class Transform : public Component, public sf::Transformable {
    public:
     Transform(GameObject& gameObject);
-    Transform(GameObject& gameObject, const sf::Vector2f& initPosition);
     virtual ~Transform() = default;
 
-    sf::Vector2f getPosition() const;
-    void setPosition(const sf::Vector2f& position);
     void setPositionX(float x);
     void setPositionY(float y);
 
-    void move(const sf::Vector2f& moveBy);
+    float getRotationRads() const;
+    void setRotationRads(float angle);
+    void rotateRads(float angle);
 
-   private:
-    sf::Vector2f position;
+    void lookAt(const sf::Vector2f& lookAtPosition);
 };

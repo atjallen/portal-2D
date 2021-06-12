@@ -14,6 +14,7 @@
 
 #include "gameobjects/floor.h"
 #include "gameobjects/player.h"
+#include "gameobjects/portalgun.h"
 
 #include "components/collision.h"
 #include "components/sprite.h"
@@ -24,6 +25,8 @@ const int Game::WINDOW_HEIGHT = 1080;
 const float Game::FIXED_UPDATE_INTERVAL = 0.02f;
 const float Game::FPS_COUNTER_UPDATE_INTERVAL = 0.05f;
 const float Game::TOUCHING_TOLERANCE = 10.0f;
+const float Game::RAYCAST_INTERVAL = 10.0f;
+const float Game::RAYCAST_MAX = 10000;
 
 Game::GameState Game::gameState = GameState::Uninitialised;
 sf::RenderWindow Game::mainWindow;
@@ -53,6 +56,12 @@ void Game::start() {
 
     LevelLoader levelLoader(gameObjectManager);
     levelLoader.loadLevelFile(Config::getLevelFilename("test"));
+
+    auto& portalGun = gameObjectManager.create<PortalGun>("portalgun");
+    portalGun.getComponent<Transform>()->setPosition(
+        sf::Vector2f(50 * 3, 50 * 3));
+
+    gameObjectManager.get<Player>("Player").setPortalGun(portalGun);
 
     gameState = GameState::Playing;
 
@@ -85,6 +94,34 @@ Game::getAllCollisionComponents() {
         }
     }
     return collisions;
+}
+
+HitInfo Game::raycast(const sf::Vector2f position, float angle) {
+    sf::Vector2f rayDirection(std::cos(angle), std::sin(angle));
+    auto collisions = getAllCollisionComponents();
+
+    // Simple raycasting algorithm
+    // Basically advance along the ray by a fixed interval until you reach a
+    // collider or the max distance
+    sf::Vector2f checkPosition = position;
+    float distance = 0;
+    while (distance < RAYCAST_MAX) {
+        for (auto& collisionWrap : collisions) {
+            auto& collision = collisionWrap.get();
+            if (collision.getBoundingBox().contains(checkPosition)) {
+                return {true, checkPosition, &collision};
+            }
+        }
+
+        distance += RAYCAST_INTERVAL;
+        checkPosition += rayDirection * RAYCAST_INTERVAL;
+    }
+
+    return {false, sf::Vector2f(), nullptr};
+}
+
+sf::Vector2i Game::getMousePosition() {
+    return sf::Mouse::getPosition(mainWindow);
 }
 
 void Game::gameLoop() {
