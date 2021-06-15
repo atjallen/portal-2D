@@ -17,7 +17,7 @@
 #include "gameobjects/player.h"
 #include "gameobjects/portalgun.h"
 
-#include "components/collision.h"
+#include "components/collider.h"
 #include "components/sprite.h"
 #include "components/transform.h"
 
@@ -74,11 +74,11 @@ void Game::start() {
 }
 
 bool Game::isOnFloor(GameObject& gameObject) {
-    auto& gameObjectCollision = *gameObject.getComponent<Collision>();
+    auto& gameObjectCollider = *gameObject.getComponent<Collider>();
     auto floors = gameObjectManager.getAll<Floor>();
     for (auto* floorPtr : floors) {
-        auto* floorCollision = floorPtr->getComponent<Collision>();
-        if (gameObjectCollision.isTouchingBelow(*floorCollision)) {
+        auto* floorCollider = floorPtr->getComponent<Collider>();
+        if (gameObjectCollider.isTouchingBelow(*floorCollider)) {
             return true;
         }
     }
@@ -89,25 +89,25 @@ GameObject& Game::getGameObject(const std::string& name) {
     return gameObjectManager.get<GameObject>(name);
 }
 
-std::set<Collision*> Game::getAllCollisionComponents() {
-    std::set<Collision*> collisions;
-    for (auto* collisionPtr : gameObjectManager.getAll()) {
-        auto* collision = collisionPtr->getComponent<Collision>();
-        if (collision) {
-            collisions.insert(collision);
+std::set<Collider*> Game::getAllColliderComponents() {
+    std::set<Collider*> colliders;
+    for (auto* colliderPtr : gameObjectManager.getAll()) {
+        auto* collider = colliderPtr->getComponent<Collider>();
+        if (collider) {
+            colliders.insert(collider);
         }
     }
-    return collisions;
+    return colliders;
 }
 
 HitInfo Game::raycast(const sf::Vector2f& position,
                       float angle,
-                      const std::set<Collision*>& exclude) {
+                      const std::set<Collider*>& exclude) {
     sf::Vector2f rayDirection(std::cos(angle), std::sin(angle));
-    std::set<Collision*> collisions;
-    for (auto* collisionPtr : getAllCollisionComponents()) {
-        if (!util::containsFast(exclude, collisionPtr)) {
-            collisions.insert(collisionPtr);
+    std::set<Collider*> colliders;
+    for (auto* colliderPtr : getAllColliderComponents()) {
+        if (!util::containsFast(exclude, colliderPtr)) {
+            colliders.insert(colliderPtr);
         }
     }
 
@@ -117,9 +117,9 @@ HitInfo Game::raycast(const sf::Vector2f& position,
     sf::Vector2f checkPosition = position;
     float distance = 0;
     while (distance < RAYCAST_MAX) {
-        for (auto* collisionPtr : collisions) {
-            if (collisionPtr->getBoundingBox().contains(checkPosition)) {
-                return {true, checkPosition, collisionPtr};
+        for (auto* colliderPtr : colliders) {
+            if (colliderPtr->getBoundingBox().contains(checkPosition)) {
+                return {true, checkPosition, colliderPtr};
             }
         }
 

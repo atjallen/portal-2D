@@ -11,7 +11,7 @@
 #include "gameobjectmanager.h"
 #include "hitinfo.h"
 
-#include "components/collision.h"
+#include "components/collider.h"
 
 class Game {
    public:
@@ -28,11 +28,11 @@ class Game {
     static bool isOnFloor(GameObject& gameObject);
 
     static GameObject& getGameObject(const std::string& name);
-    static std::set<Collision*> getAllCollisionComponents();
+    static std::set<Collider*> getAllColliderComponents();
 
     static HitInfo raycast(const sf::Vector2f& position,
                            float angle,
-                           const std::set<Collision*>& exclude = {});
+                           const std::set<Collider*>& exclude = {});
 
     static sf::Vector2i getMousePosition();
 

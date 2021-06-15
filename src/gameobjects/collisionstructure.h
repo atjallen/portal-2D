@@ -2,7 +2,7 @@
 
 #include "structure.h"
 
-#include "../components/collision.h"
+#include "../components/collider.h"
 
 class CollisionStructure : public Structure {
    public:
@@ -12,5 +12,5 @@ class CollisionStructure : public Structure {
     virtual void setDimensions(const sf::Vector2f& dimensions);
 
    protected:
-    Collision& collision;
+    Collider& collider;
 };

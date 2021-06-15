@@ -16,7 +16,7 @@ void PortalGun::draw(sf::RenderWindow& window) {
     auto origin = transform.getPosition();
     auto angle = transform.getRotationRads();
     auto hitInfo =
-        Game::raycast(origin, angle, {player.getComponent<Collision>()});
+        Game::raycast(origin, angle, {player.getComponent<Collider>()});
     auto rayLength = Game::RAYCAST_MAX;
     if (hitInfo.hit) {
         auto rayVector = hitInfo.hitPosition - origin;

@@ -4,7 +4,7 @@
 
 #include "portalgun.h"
 
-#include "../components/collision.h"
+#include "../components/collider.h"
 #include "../components/physics.h"
 #include "../components/sprite.h"
 #include "../components/transform.h"
@@ -29,6 +29,6 @@ class Player : public GameObject {
 
     Transform& transform;
     Physics& physics;
-    Collision& collision;
+    Collider& collider;
     Sprite& sprite;
 };

@@ -12,12 +12,12 @@ Player::Player()
       portalGun(nullptr),
       transform(createComponent<Transform>()),
       physics(createComponent<Physics>()),
-      collision(createComponent<Collision>()),
+      collider(createComponent<Collider>()),
       sprite(createComponent<Sprite>()) {
     sprite.loadTexture(Config::getTextureFilename("Player"));
     sprite.getSprite().setColor(sf::Color::Red);
     auto spriteBoundingBox = sprite.getSprite().getGlobalBounds();
-    collision.setBoundingBoxDimensions(
+    collider.setBoundingBoxDimensions(
         sf::Vector2f(spriteBoundingBox.width, spriteBoundingBox.height));
 }
 

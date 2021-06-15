@@ -153,7 +153,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\components\collision.cpp" />
+    <ClCompile Include="src\components\collider.cpp" />
     <ClCompile Include="src\components\component.cpp" />
     <ClCompile Include="src\components\physics.cpp" />
     <ClCompile Include="src\config.cpp" />
@@ -176,7 +176,7 @@
     <ClCompile Include="src\components\transform.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\components\collision.h" />
+    <ClInclude Include="src\components\collider.h" />
     <ClInclude Include="src\components\component.h" />
     <ClInclude Include="src\components\physics.h" />
     <ClInclude Include="src\errors.h" />
