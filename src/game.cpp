@@ -2,6 +2,7 @@
 
 #include <cmath>
 #include <iostream>
+#include <set>
 #include <string>
 
 #include <SFML/Graphics.hpp>
@@ -19,6 +20,8 @@
 #include "components/collision.h"
 #include "components/sprite.h"
 #include "components/transform.h"
+
+#include "util/container.h"
 
 const int Game::WINDOW_WIDTH = 1920;
 const int Game::WINDOW_HEIGHT = 1080;
@@ -73,32 +76,40 @@ void Game::start() {
 bool Game::isOnFloor(GameObject& gameObject) {
     auto& gameObjectCollision = *gameObject.getComponent<Collision>();
     auto floors = gameObjectManager.getAll<Floor>();
-    for (auto& floorWrap : floors) {
-        auto& floor = floorWrap.get();
-        auto& floorCollision = *floor.getComponent<Collision>();
-        if (gameObjectCollision.isTouchingBelow(floorCollision)) {
+    for (auto* floorPtr : floors) {
+        auto* floorCollision = floorPtr->getComponent<Collision>();
+        if (gameObjectCollision.isTouchingBelow(*floorCollision)) {
             return true;
         }
     }
     return false;
 }
 
-std::vector<std::reference_wrapper<Collision>>
-Game::getAllCollisionComponents() {
-    std::vector<std::reference_wrapper<Collision>> collisions;
-    for (auto& gameObjectWrap : gameObjectManager.getAll()) {
-        auto& gameObject = gameObjectWrap.get();
-        auto* collider = gameObject.getComponent<Collision>();
-        if (collider) {
-            collisions.push_back(*collider);
+GameObject& Game::getGameObject(const std::string& name) {
+    return gameObjectManager.get<GameObject>(name);
+}
+
+std::set<Collision*> Game::getAllCollisionComponents() {
+    std::set<Collision*> collisions;
+    for (auto* collisionPtr : gameObjectManager.getAll()) {
+        auto* collision = collisionPtr->getComponent<Collision>();
+        if (collision) {
+            collisions.insert(collision);
         }
     }
     return collisions;
 }
 
-HitInfo Game::raycast(const sf::Vector2f position, float angle) {
+HitInfo Game::raycast(const sf::Vector2f& position,
+                      float angle,
+                      const std::set<Collision*>& exclude) {
     sf::Vector2f rayDirection(std::cos(angle), std::sin(angle));
-    auto collisions = getAllCollisionComponents();
+    std::set<Collision*> collisions;
+    for (auto* collisionPtr : getAllCollisionComponents()) {
+        if (!util::containsFast(exclude, collisionPtr)) {
+            collisions.insert(collisionPtr);
+        }
+    }
 
     // Simple raycasting algorithm
     // Basically advance along the ray by a fixed interval until you reach a
@@ -106,10 +117,9 @@ HitInfo Game::raycast(const sf::Vector2f position, float angle) {
     sf::Vector2f checkPosition = position;
     float distance = 0;
     while (distance < RAYCAST_MAX) {
-        for (auto& collisionWrap : collisions) {
-            auto& collision = collisionWrap.get();
-            if (collision.getBoundingBox().contains(checkPosition)) {
-                return {true, checkPosition, &collision};
+        for (auto* collisionPtr : collisions) {
+            if (collisionPtr->getBoundingBox().contains(checkPosition)) {
+                return {true, checkPosition, collisionPtr};
             }
         }
 

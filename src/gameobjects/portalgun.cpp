@@ -10,14 +10,17 @@ PortalGun::PortalGun() : transform(createComponent<Transform>()) {}
 void PortalGun::draw(sf::RenderWindow& window) {
     GameObject::draw(window);
 
+    auto& player = Game::getGameObject("Player");
+
     // Calculate ray
     auto origin = transform.getPosition();
     auto angle = transform.getRotationRads();
-    auto hitInfo = Game::raycast(origin, angle);
+    auto hitInfo =
+        Game::raycast(origin, angle, {player.getComponent<Collision>()});
     auto rayLength = Game::RAYCAST_MAX;
     if (hitInfo.hit) {
         auto rayVector = hitInfo.hitPosition - origin;
-        rayLength = util::vector::length(rayVector);
+        rayLength = util::length(rayVector);
     }
 
     // Draw ray

@@ -9,7 +9,6 @@
 #include <SFML/System.hpp>
 
 namespace util {
-namespace vector {
 
 template <typename T>
 double length(sf::Vector2<T> a) {
@@ -36,5 +35,4 @@ NumType degToRad(NumType degs) {
     return degs * M_PI / 180;
 }
 
-}  // namespace vector
 }  // namespace util

@@ -13,13 +13,12 @@ class GameObjectManager {
     GameObjectManager() = default;
     ~GameObjectManager() = default;
 
-    template <typename GameObjectType>
+    template <typename GameObjectType = GameObject>
     GameObjectType& create(const std::string& name);
-    template <typename GameObjectType>
+    template <typename GameObjectType = GameObject>
     GameObjectType& get(const std::string& name);
-    std::vector<std::reference_wrapper<GameObject>> getAll();
-    template <typename GameObjectType>
-    std::vector<std::reference_wrapper<GameObjectType>> getAll();
+    template <typename GameObjectType = GameObject>
+    std::set<GameObjectType*> getAll();
     void remove(const std::string& name);
 
     void drawAll(sf::RenderWindow& window);
@@ -43,14 +42,22 @@ inline GameObjectType& GameObjectManager::get(const std::string& name) {
     return static_cast<GameObjectType&>(*nameToGameObjectPtr.at(name));
 }
 
+template <>
+inline std::set<GameObject*> GameObjectManager::getAll() {
+    std::set<GameObject*> gameObjects;
+    for (auto& nameGameObjectPtrPair : nameToGameObjectPtr) {
+        gameObjects.insert(nameGameObjectPtrPair.second.get());
+    }
+    return gameObjects;
+}
+
 template <typename GameObjectType>
-inline std::vector<std::reference_wrapper<GameObjectType>>
-GameObjectManager::getAll() {
-    std::vector<std::reference_wrapper<GameObjectType>> gameObjects;
+inline std::set<GameObjectType*> GameObjectManager::getAll() {
+    std::set<GameObjectType*> gameObjects;
     for (auto& nameGameObjectPtrPair : nameToGameObjectPtr) {
         if (typeid(*nameGameObjectPtrPair.second) == typeid(GameObjectType)) {
-            gameObjects.push_back(
-                static_cast<GameObjectType&>(*nameGameObjectPtrPair.second));
+            gameObjects.insert(static_cast<GameObjectType*>(
+                nameGameObjectPtrPair.second.get()));
         }
     }
     return gameObjects;

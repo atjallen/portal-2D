@@ -198,6 +198,7 @@
     <ClInclude Include="src\splash.h" />
     <ClInclude Include="src\components\sprite.h" />
     <ClInclude Include="src\components\transform.h" />
+    <ClInclude Include="src\util\container.h" />
     <ClInclude Include="src\util\vector.h" />
   </ItemGroup>
   <ItemGroup>

@@ -1,13 +1,5 @@
 #include "gameobjectmanager.h"
 
-std::vector<std::reference_wrapper<GameObject>> GameObjectManager::getAll() {
-    std::vector<std::reference_wrapper<GameObject>> gameObjects;
-    for (auto& nameGameObjectPtrPair : nameToGameObjectPtr) {
-        gameObjects.push_back(*nameGameObjectPtrPair.second);
-    }
-    return gameObjects;
-}
-
 void GameObjectManager::remove(const std::string& name) {
     nameToGameObjectPtr.erase(name);
 }

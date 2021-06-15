@@ -2,8 +2,8 @@
 
 #define _USE_MATH_DEFINES
 
-#include <functional>
 #include <math.h>
+#include <functional>
 #include <vector>
 
 #include <SFML/Graphics.hpp>
@@ -27,10 +27,12 @@ class Game {
 
     static bool isOnFloor(GameObject& gameObject);
 
-    static std::vector<std::reference_wrapper<Collision>>
-    getAllCollisionComponents();
+    static GameObject& getGameObject(const std::string& name);
+    static std::set<Collision*> getAllCollisionComponents();
 
-    static HitInfo raycast(const sf::Vector2f position, float angle);
+    static HitInfo raycast(const sf::Vector2f& position,
+                           float angle,
+                           const std::set<Collision*>& exclude = {});
 
     static sf::Vector2i getMousePosition();
 

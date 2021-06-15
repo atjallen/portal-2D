@@ -16,20 +16,20 @@ void Transform::setPositionY(float y) {
 }
 
 float Transform::getRotationRads() const {
-    return util::vector::degToRad(Transformable::getRotation());
+    return util::degToRad(Transformable::getRotation());
 }
 
 void Transform::setRotationRads(float angle) {
-    Transformable::setRotation(util::vector::radToDeg(angle));
+    Transformable::setRotation(util::radToDeg(angle));
 }
 
 void Transform::rotateRads(float angle) {
-    Transformable::rotate(util::vector::radToDeg(angle));
+    Transformable::rotate(util::radToDeg(angle));
 }
 
 void Transform::lookAt(const sf::Vector2f& lookAtPosition) {
     auto lookAtVector = lookAtPosition - getPosition();
     auto lookAtAngle =
-        util::vector::angleBetween(sf::Vector2f(1, 0), lookAtVector);
+        util::angleBetween(sf::Vector2f(1, 0), lookAtVector);
     setRotationRads(lookAtAngle);
 }

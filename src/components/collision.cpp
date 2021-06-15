@@ -14,12 +14,11 @@ Collision::Collision(GameObject& gameObject)
 void Collision::fixedUpdate(const sf::Time& frameTime) {
     if (!kinematic) {
         auto collisions = Game::getAllCollisionComponents();
-        for (auto& collisionWrap : collisions) {
-            auto& collision = collisionWrap.get();
+        for (auto* collisionPtr : collisions) {
             sf::Rect<float> intersection;
-            if (&collision != this &&
-                this->getBoundingBox().intersects(collision.getBoundingBox(),
-                                                  intersection)) {
+            if (collisionPtr != this &&
+                this->getBoundingBox().intersects(
+                    collisionPtr->getBoundingBox(), intersection)) {
                 // Resolve collision
                 //
                 // TODO: Handle collision between two non-kinematic colliders
