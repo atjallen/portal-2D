@@ -26,7 +26,8 @@
 const int Game::WINDOW_WIDTH = 1920;
 const int Game::WINDOW_HEIGHT = 1080;
 const float Game::FIXED_UPDATE_INTERVAL = 0.02f;
-const float Game::FPS_COUNTER_UPDATE_INTERVAL = 0.05f;
+const float Game::FPS_COUNTER_UPDATE_INTERVAL = 0.1f;
+const float Game::FPS_COUNTER_SMOOTHING = 0.9f;
 const float Game::TOUCHING_TOLERANCE = 10.0f;
 const float Game::RAYCAST_INTERVAL = 10.0f;
 const float Game::RAYCAST_MAX = 10000;
@@ -37,7 +38,7 @@ GameObjectManager Game::gameObjectManager;
 sf::Clock Game::updateClock;
 sf::Clock Game::fixedUpdateClock;
 sf::Clock Game::fpsClock;
-int Game::frameCounter = 0;
+int Game::fps = 0;
 
 sf::Font Game::textFont;
 sf::Text Game::fpsCounter;
@@ -150,16 +151,17 @@ void Game::gameLoop() {
             case GameState::Playing: {
                 mainWindow.clear(sf::Color(0, 0, 0));
 
-                // Display and/or update fps counter
+                // Update fps
+                fps = (fps * FPS_COUNTER_SMOOTHING) +
+                      (1.0f / updateClock.getElapsedTime().asSeconds() *
+                       (1.0f - FPS_COUNTER_SMOOTHING));
+
+                // Display and update fps counter
                 mainWindow.draw(fpsCounter);
                 if (fpsClock.getElapsedTime().asSeconds() >
                     FPS_COUNTER_UPDATE_INTERVAL) {
                     fpsClock.restart();
-                    fpsCounter.setString(
-                        "FPS: " +
-                        std::to_string(static_cast<int>(
-                            frameCounter * (1 / FPS_COUNTER_UPDATE_INTERVAL))));
-                    frameCounter = 0;
+                    fpsCounter.setString("FPS: " + std::to_string(fps));
                 }
 
                 // Update game objects
@@ -190,8 +192,6 @@ void Game::gameLoop() {
                         showMenu();
                     }
                 }
-
-                frameCounter++;
 
                 break;
             }

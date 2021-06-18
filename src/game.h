@@ -19,6 +19,7 @@ class Game {
     static const int WINDOW_HEIGHT;
     static const float FIXED_UPDATE_INTERVAL;
     static const float FPS_COUNTER_UPDATE_INTERVAL;
+    static const float FPS_COUNTER_SMOOTHING;
     static const float TOUCHING_TOLERANCE;
     static const float RAYCAST_INTERVAL;
     static const float RAYCAST_MAX;
@@ -52,7 +53,7 @@ class Game {
     static sf::Clock updateClock;
     static sf::Clock fixedUpdateClock;
     static sf::Clock fpsClock;
-    static int frameCounter;
+    static int fps;
 
     static sf::Font textFont;
     static sf::Text fpsCounter;
