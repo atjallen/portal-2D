@@ -12,7 +12,6 @@ class Sprite : public Component {
     virtual ~Sprite() = default;
 
     virtual void draw(sf::RenderWindow& window);
-    virtual void update(const sf::Time& frameTime);
 
     sf::Texture& getTexture();
     sf::Sprite& getSprite();

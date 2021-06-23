@@ -14,13 +14,10 @@ Sprite::Sprite(GameObject& gameObject, const std::string& filename)
 
 void Sprite::draw(sf::RenderWindow& window) {
     if (loaded) {
-        window.draw(sprite);
-    }
-}
-
-void Sprite::update(const sf::Time& frameTime) {
-    if (loaded) {
         sprite.setPosition(transform.getPosition());
+        sprite.setRotation(transform.getRotation());
+        sprite.setScale(transform.getScale());
+        window.draw(sprite);
     }
 }
 
