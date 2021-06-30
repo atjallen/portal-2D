@@ -1,8 +1,5 @@
 #pragma once
 
-#define _USE_MATH_DEFINES
-
-#include <math.h>
 #include <functional>
 #include <vector>
 
@@ -24,12 +21,19 @@ class Game {
     static const float RAYCAST_INTERVAL;
     static const float RAYCAST_MAX;
 
-    static void start();
+    static void initialise();
+    static void run();
 
-    static bool isOnFloor(GameObject& gameObject);
-
-    static GameObject& getGameObject(const std::string& name);
     static std::set<Collider*> getAllColliderComponents();
+
+    template <typename GameObjectType = GameObject>
+    static GameObjectType& get(const std::string& name);
+
+    template <typename GameObjectType>
+    static std::set<GameObjectType*> getAll();
+
+    template <typename GameObjectType = GameObject>
+    static GameObjectType& create(const std::string& name);
 
     static HitInfo raycast(const sf::Vector2f& position,
                            float angle,
@@ -59,7 +63,19 @@ class Game {
     static sf::Text fpsCounter;
 
     static void gameLoop();
-
-    static void showSplashScreen();
-    static void showMenu();
 };
+
+template <typename GameObjectType>
+inline GameObjectType& Game::get(const std::string& name) {
+    return gameObjectManager.get<GameObjectType>(name);
+}
+
+template <typename GameObjectType>
+inline std::set<GameObjectType*> Game::getAll() {
+    return gameObjectManager.getAll<GameObjectType>();
+}
+
+template <typename GameObjectType>
+inline GameObjectType& Game::create(const std::string& name) {
+    return gameObjectManager.create<GameObjectType>(name);
+}

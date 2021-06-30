@@ -2,7 +2,9 @@
 
 #include <cmath>
 
-#include "../game.h"
+#include "../../engine/game.h"
+
+#include "../util/collision.h"
 
 Player::Player()
     : runAcceleration(0.5f),
@@ -49,7 +51,7 @@ void Player::fixedUpdate(const sf::Time& frameTime) {
         movingLeftOrRight = true;
     }
 
-    if (Game::isOnFloor(*this)) {
+    if (gameutil::isOnFloor(*this)) {
         // Jump
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
             physics.addVerticalVelocity(-jumpPower);

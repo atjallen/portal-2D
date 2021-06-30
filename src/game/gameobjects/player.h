@@ -1,13 +1,13 @@
 #pragma once
 
-#include "gameobject.h"
+#include "../../engine/gameobject.h"
 
 #include "portalgun.h"
 
-#include "../components/collider.h"
-#include "../components/physics.h"
-#include "../components/sprite.h"
-#include "../components/transform.h"
+#include "../../engine/components/collider.h"
+#include "../../engine/components/physics.h"
+#include "../../engine/components/sprite.h"
+#include "../../engine/components/transform.h"
 
 class Player : public GameObject {
    public:

@@ -8,20 +8,13 @@
 #include <SFML/Graphics.hpp>
 
 #include "config.h"
-#include "levelloader.h"
-
-#include "mainmenu.h"
-#include "splash.h"
-
-#include "gameobjects/floor.h"
-#include "gameobjects/player.h"
-#include "gameobjects/portalgun.h"
+#include "gameobject.h"
 
 #include "components/collider.h"
 #include "components/sprite.h"
 #include "components/transform.h"
 
-#include "util/container.h"
+#include "../util/container.h"
 
 const int Game::WINDOW_WIDTH = 1920;
 const int Game::WINDOW_HEIGHT = 1080;
@@ -43,51 +36,24 @@ int Game::fps = 0;
 sf::Font Game::textFont;
 sf::Text Game::fpsCounter;
 
-void Game::start() {
+void Game::initialise() {
     if (gameState != GameState::Uninitialised) {
         return;
     }
-
-    Config::initialise("config.json");
-
-    mainWindow.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32),
-                      "Portal 2D");
 
     textFont.loadFromFile(Config::getFontFilename("Arial"));
 
     fpsCounter.setFont(textFont);
     fpsCounter.setFillColor(sf::Color::White);
 
-    LevelLoader levelLoader(gameObjectManager);
-    levelLoader.loadLevelFile(Config::getLevelFilename("test"));
-
-    auto& portalGun = gameObjectManager.create<PortalGun>("portalgun");
-    portalGun.getComponent<Transform>()->setPosition(
-        sf::Vector2f(50 * 3, 50 * 3));
-
-    gameObjectManager.get<Player>("Player").setPortalGun(portalGun);
-
     gameState = GameState::Playing;
+}
 
+void Game::run() {
+    mainWindow.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32),
+                      "Portal 2D");
     gameLoop();
-
     mainWindow.close();
-}
-
-bool Game::isOnFloor(GameObject& gameObject) {
-    auto& gameObjectCollider = *gameObject.getComponent<Collider>();
-    auto floors = gameObjectManager.getAll<Floor>();
-    for (auto* floorPtr : floors) {
-        auto* floorCollider = floorPtr->getComponent<Collider>();
-        if (gameObjectCollider.isTouchingBelow(*floorCollider)) {
-            return true;
-        }
-    }
-    return false;
-}
-
-GameObject& Game::getGameObject(const std::string& name) {
-    return gameObjectManager.get<GameObject>(name);
 }
 
 std::set<Collider*> Game::getAllColliderComponents() {
@@ -138,16 +104,6 @@ sf::Vector2i Game::getMousePosition() {
 void Game::gameLoop() {
     while (true) {
         switch (gameState) {
-            case GameState::ShowingSplash: {
-                showSplashScreen();
-                break;
-            }
-
-            case GameState::ShowingMenu: {
-                showMenu();
-                break;
-            }
-
             case GameState::Playing: {
                 mainWindow.clear(sf::Color(0, 0, 0));
 
@@ -186,11 +142,6 @@ void Game::gameLoop() {
                     if (event.type == sf::Event::Closed) {
                         gameState = GameState::Exiting;
                     }
-
-                    if (event.type == sf::Event::KeyPressed &&
-                        event.key.code == sf::Keyboard::Escape) {
-                        showMenu();
-                    }
                 }
 
                 break;
@@ -199,29 +150,6 @@ void Game::gameLoop() {
             case GameState::Exiting: {
                 return;
             }
-        }
-    }
-}
-
-void Game::showSplashScreen() {
-    SplashScreen splashScreen;
-    splashScreen.show(mainWindow);
-    gameState = GameState::ShowingMenu;
-}
-
-void Game::showMenu() {
-    MainMenu mainMenu;
-    MainMenu::MenuResult result = mainMenu.show(mainWindow);
-
-    switch (result) {
-        case MainMenu::MenuResult::Exit: {
-            gameState = GameState::Exiting;
-            break;
-        }
-
-        case MainMenu::MenuResult::Play: {
-            gameState = GameState::Playing;
-            break;
         }
     }
 }

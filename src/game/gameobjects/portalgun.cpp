@@ -2,15 +2,15 @@
 
 #include <cmath>
 
-#include "../game.h"
-#include "../util/vector.h"
+#include "../../engine/game.h"
+#include "../../util/vector.h"
 
 PortalGun::PortalGun() : transform(createComponent<Transform>()) {}
 
 void PortalGun::draw(sf::RenderWindow& window) {
     GameObject::draw(window);
 
-    auto& player = Game::getGameObject("Player");
+    auto& player = Game::get("Player");
 
     // Calculate ray
     auto origin = transform.getPosition();

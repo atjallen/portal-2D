@@ -10,8 +10,7 @@
 
 const float LevelLoader::TILE_SIZE = 50.0f;
 
-LevelLoader::LevelLoader(GameObjectManager& gameObjectManager)
-    : gom(gameObjectManager), structureCounter(0) {}
+LevelLoader::LevelLoader() : structureCounter(0) {}
 
 void LevelLoader::loadLevelFile(const std::string& filename) {
     std::ifstream levelFileStream(filename);
@@ -60,6 +59,6 @@ sf::Vector2f LevelLoader::gridCoordsToGameCoords(int x, int y) {
 }
 
 void LevelLoader::createPlayer(int x, int y) {
-    auto& player = gom.create<Player>("Player");
+    auto& player = Game::create<Player>("Player");
     player.getComponent<Transform>()->setPosition(gridCoordsToGameCoords(x, y));
 }

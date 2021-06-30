@@ -1,8 +1,8 @@
 #pragma once
 
-#include "gameobject.h"
+#include "../../engine/gameobject.h"
 
-#include "../components/transform.h"
+#include "../../engine/components/transform.h"
 
 class PortalGun : public GameObject {
    public:

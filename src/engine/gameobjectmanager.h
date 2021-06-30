@@ -6,7 +6,7 @@
 #include <set>
 #include <vector>
 
-#include "gameobjects/gameobject.h"
+#include "gameobject.h"
 
 class GameObjectManager {
    public:

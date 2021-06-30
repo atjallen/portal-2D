@@ -1,9 +1,9 @@
 #pragma once
 
-#include "gameobject.h"
+#include "../../engine/gameobject.h"
 
-#include "../components/transform.h"
-#include "../components/sprite.h"
+#include "../../engine/components/sprite.h"
+#include "../../engine/components/transform.h"
 
 class Structure : public GameObject {
    public:

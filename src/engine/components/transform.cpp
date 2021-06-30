@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "../util/vector.h"
+#include "../../util/vector.h"
 
 Transform::Transform(GameObject& gameObject)
     : Component(gameObject), Transformable() {}

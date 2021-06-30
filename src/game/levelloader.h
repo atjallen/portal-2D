@@ -1,21 +1,19 @@
 #pragma once
 
-#include "gameobjectmanager.h"
-
 #include <string>
 
-#include "components/transform.h"
+#include "../engine/components/transform.h"
+#include "../engine/game.h"
 
 class LevelLoader {
    public:
     static const float TILE_SIZE;
 
-    LevelLoader(GameObjectManager& gameObjectManager);
+    LevelLoader();
 
     void loadLevelFile(const std::string& filename);
 
    private:
-    GameObjectManager& gom;
     int structureCounter;
 
     sf::Vector2f gridCoordsToGameCoords(int x, int y);
@@ -27,7 +25,7 @@ class LevelLoader {
 
 template <typename StructureType>
 inline void LevelLoader::createStructure(int x, int y) {
-    auto& structure = gom.create<StructureType>(
+    auto& structure = Game::create<StructureType>(
         "Structure" + std::to_string(structureCounter++));
     structure.setDimensions(sf::Vector2f(TILE_SIZE, TILE_SIZE));
     structure.getComponent<Transform>()->setPosition(

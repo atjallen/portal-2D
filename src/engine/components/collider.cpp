@@ -1,7 +1,7 @@
 #include "collider.h"
 
 #include "../game.h"
-#include "../gameobjects/gameobject.h"
+#include "../gameobject.h"
 
 Collider::Collider(GameObject& gameObject)
     : Component(gameObject),
