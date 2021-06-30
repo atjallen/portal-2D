@@ -25,7 +25,6 @@ const float Game::TOUCHING_TOLERANCE = 10.0f;
 const float Game::RAYCAST_INTERVAL = 10.0f;
 const float Game::RAYCAST_MAX = 10000;
 
-Game::GameState Game::gameState = GameState::Uninitialised;
 sf::RenderWindow Game::mainWindow;
 GameObjectManager Game::gameObjectManager;
 sf::Clock Game::updateClock;
@@ -37,16 +36,9 @@ sf::Font Game::textFont;
 sf::Text Game::fpsCounter;
 
 void Game::initialise() {
-    if (gameState != GameState::Uninitialised) {
-        return;
-    }
-
     textFont.loadFromFile(Config::getFontFilename("Arial"));
-
     fpsCounter.setFont(textFont);
     fpsCounter.setFillColor(sf::Color::White);
-
-    gameState = GameState::Playing;
 }
 
 void Game::run() {
@@ -103,51 +95,40 @@ sf::Vector2i Game::getMousePosition() {
 
 void Game::gameLoop() {
     while (true) {
-        switch (gameState) {
-            case GameState::Playing: {
-                mainWindow.clear(sf::Color(0, 0, 0));
+        mainWindow.clear(sf::Color(0, 0, 0));
 
-                // Update fps
-                fps = (fps * FPS_COUNTER_SMOOTHING) +
-                      (1.0f / updateClock.getElapsedTime().asSeconds() *
-                       (1.0f - FPS_COUNTER_SMOOTHING));
+        // Update fps
+        fps = (fps * FPS_COUNTER_SMOOTHING) +
+              (1.0f / updateClock.getElapsedTime().asSeconds() *
+               (1.0f - FPS_COUNTER_SMOOTHING));
 
-                // Display and update fps counter
-                mainWindow.draw(fpsCounter);
-                if (fpsClock.getElapsedTime().asSeconds() >
-                    FPS_COUNTER_UPDATE_INTERVAL) {
-                    fpsClock.restart();
-                    fpsCounter.setString("FPS: " + std::to_string(fps));
-                }
+        // Display and update fps counter
+        mainWindow.draw(fpsCounter);
+        if (fpsClock.getElapsedTime().asSeconds() >
+            FPS_COUNTER_UPDATE_INTERVAL) {
+            fpsClock.restart();
+            fpsCounter.setString("FPS: " + std::to_string(fps));
+        }
 
-                // Update game objects
-                gameObjectManager.updateAll(updateClock.restart());
+        // Update game objects
+        gameObjectManager.updateAll(updateClock.restart());
 
-                // Fixed update game objects
-                if (fixedUpdateClock.getElapsedTime().asSeconds() >
-                    FIXED_UPDATE_INTERVAL) {
-                    gameObjectManager.fixedUpdateAll(
-                        fixedUpdateClock.restart());
-                }
+        // Fixed update game objects
+        if (fixedUpdateClock.getElapsedTime().asSeconds() >
+            FIXED_UPDATE_INTERVAL) {
+            gameObjectManager.fixedUpdateAll(fixedUpdateClock.restart());
+        }
 
-                // Draw game objects
-                gameObjectManager.drawAll(mainWindow);
+        // Draw game objects
+        gameObjectManager.drawAll(mainWindow);
 
-                // Display window
-                mainWindow.display();
+        // Display window
+        mainWindow.display();
 
-                // Handle events
-                sf::Event event;
-                if (mainWindow.pollEvent(event)) {
-                    if (event.type == sf::Event::Closed) {
-                        gameState = GameState::Exiting;
-                    }
-                }
-
-                break;
-            }
-
-            case GameState::Exiting: {
+        // Handle events
+        sf::Event event;
+        if (mainWindow.pollEvent(event)) {
+            if (event.type == sf::Event::Closed) {
                 return;
             }
         }

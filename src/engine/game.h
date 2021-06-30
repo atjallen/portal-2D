@@ -42,16 +42,6 @@ class Game {
     static sf::Vector2i getMousePosition();
 
    private:
-    enum class GameState {
-        Uninitialised,
-        ShowingSplash,
-        Paused,
-        ShowingMenu,
-        Playing,
-        Exiting,
-    };
-
-    static GameState gameState;
     static sf::RenderWindow mainWindow;
     static GameObjectManager gameObjectManager;
     static sf::Clock updateClock;
