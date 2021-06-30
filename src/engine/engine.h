@@ -6,7 +6,6 @@
 #include <SFML/Graphics.hpp>
 
 #include "gameobjectmanager.h"
-#include "hitinfo.h"
 
 #include "components/collider.h"
 
@@ -17,27 +16,21 @@ class Engine {
     static const float FIXED_UPDATE_INTERVAL;
     static const float FPS_COUNTER_UPDATE_INTERVAL;
     static const float FPS_COUNTER_SMOOTHING;
-    static const float TOUCHING_TOLERANCE;
-    static const float RAYCAST_INTERVAL;
-    static const float RAYCAST_MAX;
 
     static void initialise();
     static void run();
 
-    static std::set<Collider*> getAllColliderComponents();
-
     template <typename GameObjectType = GameObject>
-    static GameObjectType& get(const std::string& name);
+    static GameObjectType& getGameObject(const std::string& name);
 
     template <typename GameObjectType>
-    static std::set<GameObjectType*> getAll();
+    static std::set<GameObjectType*> getAllGameObjects();
 
     template <typename GameObjectType = GameObject>
-    static GameObjectType& create(const std::string& name);
+    static GameObjectType& createGameObject(const std::string& name);
 
-    static HitInfo raycast(const sf::Vector2f& position,
-                           float angle,
-                           const std::set<Collider*>& exclude = {});
+    template <typename ComponentType>
+    static std::set<ComponentType*> getAllComponents();
 
     static sf::Vector2i getMousePosition();
 
@@ -51,21 +44,24 @@ class Engine {
 
     static sf::Font textFont;
     static sf::Text fpsCounter;
-
-    static void mainLoop();
 };
 
 template <typename GameObjectType>
-inline GameObjectType& Engine::get(const std::string& name) {
+inline GameObjectType& Engine::getGameObject(const std::string& name) {
     return gameObjectManager.get<GameObjectType>(name);
 }
 
 template <typename GameObjectType>
-inline std::set<GameObjectType*> Engine::getAll() {
+inline std::set<GameObjectType*> Engine::getAllGameObjects() {
     return gameObjectManager.getAll<GameObjectType>();
 }
 
 template <typename GameObjectType>
-inline GameObjectType& Engine::create(const std::string& name) {
+inline GameObjectType& Engine::createGameObject(const std::string& name) {
     return gameObjectManager.create<GameObjectType>(name);
+}
+
+template <typename ComponentType>
+inline std::set<ComponentType*> Engine::getAllComponents() {
+    return gameObjectManager.getAllComponents<ComponentType>();
 }

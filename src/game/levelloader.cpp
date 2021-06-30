@@ -59,6 +59,6 @@ sf::Vector2f LevelLoader::gridCoordsToGameCoords(int x, int y) {
 }
 
 void LevelLoader::createPlayer(int x, int y) {
-    auto& player = Engine::create<Player>("Player");
+    auto& player = Engine::createGameObject<Player>("Player");
     player.getComponent<Transform>()->setPosition(gridCoordsToGameCoords(x, y));
 }

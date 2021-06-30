@@ -17,8 +17,10 @@ class GameObjectManager {
     GameObjectType& create(const std::string& name);
     template <typename GameObjectType = GameObject>
     GameObjectType& get(const std::string& name);
-    template <typename GameObjectType = GameObject>
+    template <typename GameObjectType>
     std::set<GameObjectType*> getAll();
+    template <typename ComponentType>
+    std::set<ComponentType*> getAllComponents();
     void remove(const std::string& name);
 
     void drawAll(sf::RenderWindow& window);
@@ -61,4 +63,17 @@ inline std::set<GameObjectType*> GameObjectManager::getAll() {
         }
     }
     return gameObjects;
+}
+
+template <typename ComponentType>
+inline std::set<ComponentType*> GameObjectManager::getAllComponents() {
+    std::set<ComponentType*> components;
+    for (auto& nameGameObjectPtrPair : nameToGameObjectPtr) {
+        auto* collider =
+            nameGameObjectPtrPair.second->getComponent<ComponentType>();
+        if (collider) {
+            components.insert(collider);
+        }
+    }
+    return components;
 }

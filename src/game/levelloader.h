@@ -25,7 +25,7 @@ class LevelLoader {
 
 template <typename StructureType>
 inline void LevelLoader::createStructure(int x, int y) {
-    auto& structure = Engine::create<StructureType>(
+    auto& structure = Engine::createGameObject<StructureType>(
         "Structure" + std::to_string(structureCounter++));
     structure.setDimensions(sf::Vector2f(TILE_SIZE, TILE_SIZE));
     structure.getComponent<Transform>()->setPosition(

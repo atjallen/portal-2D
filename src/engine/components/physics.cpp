@@ -3,7 +3,7 @@
 #include <cmath>
 #include <limits>
 
-#include "../gameobjects/gameobject.h"
+#include "../gameobject.h"
 
 Physics::Physics(GameObject& gameObject)
     : Component(gameObject),

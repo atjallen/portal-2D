@@ -9,7 +9,7 @@ namespace gameutil {
 
 bool isOnFloor(GameObject& gameObject) {
     auto& gameObjectCollider = *gameObject.getComponent<Collider>();
-    auto floors = Engine::getAll<Floor>();
+    auto floors = Engine::getAllGameObjects<Floor>();
     for (auto* floorPtr : floors) {
         auto* floorCollider = floorPtr->getComponent<Collider>();
         if (gameObjectCollider.isTouchingBelow(*floorCollider)) {
