@@ -1,6 +1,6 @@
 #include "collider.h"
 
-#include "../game.h"
+#include "../engine.h"
 #include "../gameobject.h"
 
 Collider::Collider(GameObject& gameObject)
@@ -13,7 +13,7 @@ Collider::Collider(GameObject& gameObject)
 
 void Collider::fixedUpdate(const sf::Time& frameTime) {
     if (!kinematic) {
-        auto colliders = Game::getAllColliderComponents();
+        auto colliders = Engine::getAllColliderComponents();
         for (auto* colliderPtr : colliders) {
             sf::Rect<float> intersection;
             if (colliderPtr != this &&

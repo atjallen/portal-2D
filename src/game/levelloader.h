@@ -3,7 +3,7 @@
 #include <string>
 
 #include "../engine/components/transform.h"
-#include "../engine/game.h"
+#include "../engine/engine.h"
 
 class LevelLoader {
    public:
@@ -25,7 +25,7 @@ class LevelLoader {
 
 template <typename StructureType>
 inline void LevelLoader::createStructure(int x, int y) {
-    auto& structure = Game::create<StructureType>(
+    auto& structure = Engine::create<StructureType>(
         "Structure" + std::to_string(structureCounter++));
     structure.setDimensions(sf::Vector2f(TILE_SIZE, TILE_SIZE));
     structure.getComponent<Transform>()->setPosition(

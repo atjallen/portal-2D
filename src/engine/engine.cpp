@@ -1,4 +1,4 @@
-#include "game.h"
+#include "engine.h"
 
 #include <cmath>
 #include <iostream>
@@ -16,39 +16,39 @@
 
 #include "../util/container.h"
 
-const int Game::WINDOW_WIDTH = 1920;
-const int Game::WINDOW_HEIGHT = 1080;
-const float Game::FIXED_UPDATE_INTERVAL = 0.02f;
-const float Game::FPS_COUNTER_UPDATE_INTERVAL = 0.1f;
-const float Game::FPS_COUNTER_SMOOTHING = 0.9f;
-const float Game::TOUCHING_TOLERANCE = 10.0f;
-const float Game::RAYCAST_INTERVAL = 10.0f;
-const float Game::RAYCAST_MAX = 10000;
+const int Engine::WINDOW_WIDTH = 1920;
+const int Engine::WINDOW_HEIGHT = 1080;
+const float Engine::FIXED_UPDATE_INTERVAL = 0.02f;
+const float Engine::FPS_COUNTER_UPDATE_INTERVAL = 0.1f;
+const float Engine::FPS_COUNTER_SMOOTHING = 0.9f;
+const float Engine::TOUCHING_TOLERANCE = 10.0f;
+const float Engine::RAYCAST_INTERVAL = 10.0f;
+const float Engine::RAYCAST_MAX = 10000;
 
-sf::RenderWindow Game::mainWindow;
-GameObjectManager Game::gameObjectManager;
-sf::Clock Game::updateClock;
-sf::Clock Game::fixedUpdateClock;
-sf::Clock Game::fpsClock;
-int Game::fps = 0;
+sf::RenderWindow Engine::mainWindow;
+GameObjectManager Engine::gameObjectManager;
+sf::Clock Engine::updateClock;
+sf::Clock Engine::fixedUpdateClock;
+sf::Clock Engine::fpsClock;
+int Engine::fps = 0;
 
-sf::Font Game::textFont;
-sf::Text Game::fpsCounter;
+sf::Font Engine::textFont;
+sf::Text Engine::fpsCounter;
 
-void Game::initialise() {
+void Engine::initialise() {
     textFont.loadFromFile(Config::getFontFilename("Arial"));
     fpsCounter.setFont(textFont);
     fpsCounter.setFillColor(sf::Color::White);
 }
 
-void Game::run() {
+void Engine::run() {
     mainWindow.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32),
                       "Portal 2D");
-    gameLoop();
+    mainLoop();
     mainWindow.close();
 }
 
-std::set<Collider*> Game::getAllColliderComponents() {
+std::set<Collider*> Engine::getAllColliderComponents() {
     std::set<Collider*> colliders;
     for (auto* colliderPtr : gameObjectManager.getAll()) {
         auto* collider = colliderPtr->getComponent<Collider>();
@@ -59,7 +59,7 @@ std::set<Collider*> Game::getAllColliderComponents() {
     return colliders;
 }
 
-HitInfo Game::raycast(const sf::Vector2f& position,
+HitInfo Engine::raycast(const sf::Vector2f& position,
                       float angle,
                       const std::set<Collider*>& exclude) {
     sf::Vector2f rayDirection(std::cos(angle), std::sin(angle));
@@ -89,11 +89,11 @@ HitInfo Game::raycast(const sf::Vector2f& position,
     return {false, sf::Vector2f(), nullptr};
 }
 
-sf::Vector2i Game::getMousePosition() {
+sf::Vector2i Engine::getMousePosition() {
     return sf::Mouse::getPosition(mainWindow);
 }
 
-void Game::gameLoop() {
+void Engine::mainLoop() {
     while (true) {
         mainWindow.clear(sf::Color(0, 0, 0));
 

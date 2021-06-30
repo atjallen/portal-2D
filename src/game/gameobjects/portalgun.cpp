@@ -2,7 +2,7 @@
 
 #include <cmath>
 
-#include "../../engine/game.h"
+#include "../../engine/engine.h"
 #include "../../util/vector.h"
 
 PortalGun::PortalGun() : transform(createComponent<Transform>()) {}
@@ -10,14 +10,14 @@ PortalGun::PortalGun() : transform(createComponent<Transform>()) {}
 void PortalGun::draw(sf::RenderWindow& window) {
     GameObject::draw(window);
 
-    auto& player = Game::get("Player");
+    auto& player = Engine::get("Player");
 
     // Calculate ray
     auto origin = transform.getPosition();
     auto angle = transform.getRotationRads();
     auto hitInfo =
-        Game::raycast(origin, angle, {player.getComponent<Collider>()});
-    auto rayLength = Game::RAYCAST_MAX;
+        Engine::raycast(origin, angle, {player.getComponent<Collider>()});
+    auto rayLength = Engine::RAYCAST_MAX;
     if (hitInfo.hit) {
         auto rayVector = hitInfo.hitPosition - origin;
         rayLength = util::length(rayVector);

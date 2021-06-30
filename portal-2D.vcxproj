@@ -157,7 +157,7 @@
     <ClCompile Include="src\engine\components\component.cpp" />
     <ClCompile Include="src\engine\components\physics.cpp" />
     <ClCompile Include="src\engine\config.cpp" />
-    <ClCompile Include="src\engine\game.cpp" />
+    <ClCompile Include="src\engine\engine.cpp" />
     <ClCompile Include="src\game\gameobjects\ceiling.cpp" />
     <ClCompile Include="src\game\gameobjects\collisionstructure.cpp" />
     <ClCompile Include="src\game\gameobjects\floor.cpp" />
@@ -185,7 +185,7 @@
     <ClInclude Include="src\game\gameobjects\collisionstructure.h" />
     <ClInclude Include="src\game\gameobjects\floor.h" />
     <ClInclude Include="src\engine\gameobject.h" />
-    <ClInclude Include="src\engine\game.h" />
+    <ClInclude Include="src\engine\engine.h" />
     <ClInclude Include="src\engine\gameobjectmanager.h" />
     <ClInclude Include="src\game\gameobjects\structure.h" />
     <ClInclude Include="src\game\gameobjects\wall.h" />

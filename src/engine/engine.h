@@ -10,7 +10,7 @@
 
 #include "components/collider.h"
 
-class Game {
+class Engine {
    public:
     static const int WINDOW_WIDTH;
     static const int WINDOW_HEIGHT;
@@ -52,20 +52,20 @@ class Game {
     static sf::Font textFont;
     static sf::Text fpsCounter;
 
-    static void gameLoop();
+    static void mainLoop();
 };
 
 template <typename GameObjectType>
-inline GameObjectType& Game::get(const std::string& name) {
+inline GameObjectType& Engine::get(const std::string& name) {
     return gameObjectManager.get<GameObjectType>(name);
 }
 
 template <typename GameObjectType>
-inline std::set<GameObjectType*> Game::getAll() {
+inline std::set<GameObjectType*> Engine::getAll() {
     return gameObjectManager.getAll<GameObjectType>();
 }
 
 template <typename GameObjectType>
-inline GameObjectType& Game::create(const std::string& name) {
+inline GameObjectType& Engine::create(const std::string& name) {
     return gameObjectManager.create<GameObjectType>(name);
 }

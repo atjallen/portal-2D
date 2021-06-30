@@ -2,7 +2,7 @@
 
 #include <cmath>
 
-#include "../../engine/game.h"
+#include "../../engine/engine.h"
 
 #include "../util/collision.h"
 
@@ -30,7 +30,7 @@ void Player::update(const sf::Time& frameTime) {
         portalGun->getComponent<Transform>()->setPosition(
             transform.getPosition() + sf::Vector2f(30, 0));
         portalGun->getComponent<Transform>()->lookAt(
-            sf::Vector2f(Game::getMousePosition()));
+            sf::Vector2f(Engine::getMousePosition()));
     }
 }
 
