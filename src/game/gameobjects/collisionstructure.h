@@ -12,5 +12,5 @@ class CollisionStructure : public Structure {
     virtual void setDimensions(const sf::Vector2f& dimensions);
 
    protected:
-    Collider& collider;
+    engine::Collider& collider;
 };

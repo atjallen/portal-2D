@@ -12,11 +12,11 @@ Player::Player()
       floorDrag(0.5f),
       maxRunSpeed(10.0f),
       portalGun(nullptr),
-      transform(createComponent<Transform>()),
-      physics(createComponent<Physics>()),
-      collider(createComponent<Collider>()),
-      sprite(createComponent<Sprite>()) {
-    sprite.loadTexture(Config::getTextureFilename("Player"));
+      transform(createComponent<engine::Transform>()),
+      physics(createComponent<engine::Physics>()),
+      collider(createComponent<engine::Collider>()),
+      sprite(createComponent<engine::Sprite>()) {
+    sprite.loadTexture(engine::Config::getTextureFilename("Player"));
     sprite.getSprite().setColor(sf::Color::Red);
     auto spriteBoundingBox = sprite.getSprite().getGlobalBounds();
     collider.setBoundingBoxDimensions(
@@ -27,10 +27,10 @@ void Player::update(const sf::Time& frameTime) {
     GameObject::update(frameTime);
 
     if (portalGun) {
-        portalGun->getComponent<Transform>()->setPosition(
+        portalGun->getComponent<engine::Transform>()->setPosition(
             transform.getPosition() + sf::Vector2f(30, 0));
-        portalGun->getComponent<Transform>()->lookAt(
-            sf::Vector2f(Engine::getMousePosition()));
+        portalGun->getComponent<engine::Transform>()->lookAt(
+            sf::Vector2f(engine::Engine::getMousePosition()));
     }
 }
 

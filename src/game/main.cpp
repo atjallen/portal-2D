@@ -8,20 +8,20 @@
 #include "gameobjects/portalgun.h"
 
 int main() {
-    Config::initialise("config.json");
-    Engine::initialise();
+    engine::Config::initialise("config.json");
+    engine::Engine::initialise();
 
     // Load test level
     LevelLoader levelLoader;
-    levelLoader.loadLevelFile(Config::getLevelFilename("test"));
+    levelLoader.loadLevelFile(engine::Config::getLevelFilename("test"));
 
     // Create test portal gun and assign to player
-    auto& portalGun = Engine::createGameObject<PortalGun>("portalgun");
-    portalGun.getComponent<Transform>()->setPosition(
+    auto& portalGun = engine::Engine::createGameObject<PortalGun>("portalgun");
+    portalGun.getComponent<engine::Transform>()->setPosition(
         sf::Vector2f(50 * 3, 50 * 3));
-    Engine::getGameObject<Player>("Player").setPortalGun(portalGun);
+    engine::Engine::getGameObject<Player>("Player").setPortalGun(portalGun);
 
-    Engine::run();
+    engine::Engine::run();
 
     return 0;
 }

@@ -5,6 +5,8 @@
 #include "component.h"
 #include "transform.h"
 
+namespace engine {
+
 class Sprite : public Component {
    public:
     Sprite(GameObject& gameObject);
@@ -30,3 +32,5 @@ class Sprite : public Component {
 
     void resetOrigin();
 };
+
+}  // namespace engine

@@ -4,6 +4,8 @@
 
 #include "../util/container.h"
 
+namespace engine {
+
 namespace raycast {
 
 HitInfo raycast(const sf::Vector2f& position,
@@ -37,3 +39,5 @@ HitInfo raycast(const sf::Vector2f& position,
 }
 
 }  // namespace raycast
+
+}  // namespace engine

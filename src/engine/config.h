@@ -4,6 +4,8 @@
 
 #include <nlohmann/json.hpp>
 
+namespace engine {
+
 class Config {
    public:
     static void initialise(const std::string& configFilename);
@@ -16,3 +18,5 @@ class Config {
    private:
     static nlohmann::json config;
 };
+
+}  // namespace engine

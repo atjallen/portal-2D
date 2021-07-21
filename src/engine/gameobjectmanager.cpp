@@ -1,5 +1,7 @@
 #include "gameobjectmanager.h"
 
+namespace engine {
+
 void GameObjectManager::remove(const std::string& name) {
     nameToGameObjectPtr.erase(name);
 }
@@ -21,3 +23,5 @@ void GameObjectManager::fixedUpdateAll(const sf::Time& frameTime) {
         nameGameObjectPtrPair.second->fixedUpdate(frameTime);
     }
 }
+
+}  // namespace engine

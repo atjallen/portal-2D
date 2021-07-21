@@ -9,7 +9,7 @@
 #include "../../engine/components/sprite.h"
 #include "../../engine/components/transform.h"
 
-class Player : public GameObject {
+class Player : public engine::GameObject {
    public:
     Player();
     virtual ~Player() = default;
@@ -27,8 +27,8 @@ class Player : public GameObject {
 
     PortalGun* portalGun;
 
-    Transform& transform;
-    Physics& physics;
-    Collider& collider;
-    Sprite& sprite;
+    engine::Transform& transform;
+    engine::Physics& physics;
+    engine::Collider& collider;
+    engine::Sprite& sprite;
 };

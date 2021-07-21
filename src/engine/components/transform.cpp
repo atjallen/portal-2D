@@ -4,6 +4,8 @@
 
 #include "../../util/vector.h"
 
+namespace engine {
+
 Transform::Transform(GameObject& gameObject)
     : Component(gameObject), Transformable() {}
 
@@ -29,7 +31,8 @@ void Transform::rotateRads(float angle) {
 
 void Transform::lookAt(const sf::Vector2f& lookAtPosition) {
     auto lookAtVector = lookAtPosition - getPosition();
-    auto lookAtAngle =
-        util::angleBetween(sf::Vector2f(1, 0), lookAtVector);
+    auto lookAtAngle = util::angleBetween(sf::Vector2f(1, 0), lookAtVector);
     setRotationRads(lookAtAngle);
 }
+
+}  // namespace engine

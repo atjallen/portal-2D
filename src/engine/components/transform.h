@@ -4,6 +4,8 @@
 
 #include "component.h"
 
+namespace engine {
+
 class Transform : public Component, public sf::Transformable {
    public:
     Transform(GameObject& gameObject);
@@ -18,3 +20,5 @@ class Transform : public Component, public sf::Transformable {
 
     void lookAt(const sf::Vector2f& lookAtPosition);
 };
+
+}  // namespace engine

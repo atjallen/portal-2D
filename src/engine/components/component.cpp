@@ -1,5 +1,7 @@
 #include "component.h"
 
+namespace engine {
+
 Component::Component(GameObject& gameObject) : gameObject(gameObject) {}
 
 void Component::draw(sf::RenderWindow& window) {
@@ -13,3 +15,5 @@ void Component::update(const sf::Time& frameTime) {
 void Component::fixedUpdate(const sf::Time& frameTime) {
     // Do nothing
 }
+
+}  // namespace engine

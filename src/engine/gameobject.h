@@ -11,6 +11,8 @@
 
 #include "components/component.h"
 
+namespace engine {
+
 class GameObject {
    public:
     GameObject() = default;
@@ -49,3 +51,5 @@ inline ComponentType* GameObject::getComponent() {
         return static_cast<ComponentType*>(componentPtrIt->get());
     }
 }
+
+}  // namespace engine

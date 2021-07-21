@@ -4,6 +4,8 @@
 #include "transform.h"
 #include "physics.h"
 
+namespace engine {
+
 class Collider : public Component {
    public:
     Collider(GameObject& gameObject);
@@ -26,3 +28,5 @@ class Collider : public Component {
     Transform& transform;
     Physics& physics;
 };
+
+}  // namespace engine

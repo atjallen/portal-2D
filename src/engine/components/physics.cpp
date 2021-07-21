@@ -5,6 +5,8 @@
 
 #include "../gameobject.h"
 
+namespace engine {
+
 Physics::Physics(GameObject& gameObject)
     : Component(gameObject),
       gravity(0.5f),
@@ -62,3 +64,5 @@ void Physics::addHorizontalVelocity(float addAmount) {
 void Physics::addVerticalVelocity(float addAmount) {
     velocity.y += addAmount;
 }
+
+}  // namespace engine

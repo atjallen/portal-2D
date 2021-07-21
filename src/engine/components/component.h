@@ -4,7 +4,9 @@
 
 #include "../config.h"
 
-class GameObject;
+namespace engine {
+
+class GameObject; // Forward declaration to avoid circular import
 
 class Component {
    public:
@@ -18,3 +20,5 @@ class Component {
    protected:
     GameObject& gameObject;
 };
+
+}  // namespace engine

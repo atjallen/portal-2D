@@ -1,7 +1,7 @@
 #include "collisionstructure.h"
 
 CollisionStructure::CollisionStructure()
-    : collider(createComponent<Collider>()) {
+    : collider(createComponent<engine::Collider>()) {
     collider.setKinematic(true);
 }
 

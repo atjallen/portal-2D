@@ -1,5 +1,7 @@
 #include "gameobject.h"
 
+namespace engine {
+
 void GameObject::draw(sf::RenderWindow& window) {
     for (auto& componentPtr : componentPtrs) {
         componentPtr->draw(window);
@@ -17,3 +19,5 @@ void GameObject::fixedUpdate(const sf::Time& frameTime) {
         componentPtr->fixedUpdate(frameTime);
     }
 }
+
+}  // namespace engine

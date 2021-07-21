@@ -3,6 +3,8 @@
 #include "component.h"
 #include "transform.h"
 
+namespace engine {
+
 class Physics : public Component {
    public:
     Physics(GameObject& gameObject);
@@ -29,3 +31,5 @@ class Physics : public Component {
 
     Transform& transform;
 };
+
+}  // namespace engine

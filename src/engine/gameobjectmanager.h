@@ -8,6 +8,8 @@
 
 #include "gameobject.h"
 
+namespace engine {
+
 class GameObjectManager {
    public:
     GameObjectManager() = default;
@@ -77,3 +79,5 @@ inline std::set<ComponentType*> GameObjectManager::getAllComponents() {
     }
     return components;
 }
+
+}  // namespace engine

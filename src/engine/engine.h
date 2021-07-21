@@ -9,6 +9,8 @@
 
 #include "components/collider.h"
 
+namespace engine {
+
 class Engine {
    public:
     static const int WINDOW_WIDTH;
@@ -65,3 +67,5 @@ template <typename ComponentType>
 inline std::set<ComponentType*> Engine::getAllComponents() {
     return gameObjectManager.getAllComponents<ComponentType>();
 }
+
+}  // namespace engine

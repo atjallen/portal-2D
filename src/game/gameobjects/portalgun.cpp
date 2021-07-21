@@ -6,19 +6,19 @@
 #include "../../engine/raycast.h"
 #include "../../util/vector.h"
 
-PortalGun::PortalGun() : transform(createComponent<Transform>()) {}
+PortalGun::PortalGun() : transform(createComponent<engine::Transform>()) {}
 
 void PortalGun::draw(sf::RenderWindow& window) {
     GameObject::draw(window);
 
-    auto& player = Engine::getGameObject("Player");
+    auto& player = engine::Engine::getGameObject("Player");
 
     // Calculate ray
     auto origin = transform.getPosition();
     auto angle = transform.getRotationRads();
     auto hitInfo =
-        raycast::raycast(origin, angle, {player.getComponent<Collider>()});
-    auto rayLength = raycast::RAYCAST_MAX;
+        engine::raycast::raycast(origin, angle, {player.getComponent<engine::Collider>()});
+    auto rayLength = engine::raycast::RAYCAST_MAX;
     if (hitInfo.hit) {
         auto rayVector = hitInfo.hitPosition - origin;
         rayLength = util::length(rayVector);

@@ -3,6 +3,8 @@
 #include "../engine.h"
 #include "../gameobject.h"
 
+namespace engine {
+
 Collider::Collider(GameObject& gameObject)
     : Component(gameObject),
       boundingBoxWidth(0),
@@ -88,5 +90,7 @@ bool Collider::isTouchingBelow(const Collider& other) {
             thisBoundingBox.left + thisBoundingBox.width < otherBoundingBox.left // Bounding box is to the left of other bounding box
             || thisBoundingBox.left > otherBoundingBox.left + otherBoundingBox.width // Bounding box is to the right of other bounding box
         );
-    // clang-format on`
+    // clang-format on
 }
+
+}  // namespace engine

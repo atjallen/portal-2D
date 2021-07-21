@@ -12,6 +12,8 @@
 
 #include "../util/container.h"
 
+namespace engine {
+
 const int Engine::WINDOW_WIDTH = 1920;
 const int Engine::WINDOW_HEIGHT = 1080;
 const float Engine::FIXED_UPDATE_INTERVAL = 0.02f;
@@ -85,3 +87,5 @@ void Engine::run() {
 sf::Vector2i Engine::getMousePosition() {
     return sf::Mouse::getPosition(mainWindow);
 }
+
+}  // namespace engine

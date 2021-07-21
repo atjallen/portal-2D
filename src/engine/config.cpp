@@ -2,6 +2,8 @@
 
 #include <fstream>
 
+namespace engine {
+
 nlohmann::json Config::config;
 
 void Config::initialise(const std::string& configFilename) {
@@ -24,3 +26,5 @@ std::string Config::getFontFilename(const std::string& fontName) {
 std::string Config::getLevelFilename(const std::string& levelName) {
     return config["resources"]["levels"][levelName].get<std::string>();
 }
+
+}  // namespace engine

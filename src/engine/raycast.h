@@ -6,6 +6,8 @@
 
 #include "components/collider.h"
 
+namespace engine {
+
 namespace raycast {
 
 struct HitInfo {
@@ -22,3 +24,5 @@ HitInfo raycast(const sf::Vector2f& position,
                 const std::set<Collider*>& exclude = {});
 
 }  // namespace raycast
+
+}  // namespace engine

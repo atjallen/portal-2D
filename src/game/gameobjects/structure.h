@@ -5,7 +5,7 @@
 #include "../../engine/components/sprite.h"
 #include "../../engine/components/transform.h"
 
-class Structure : public GameObject {
+class Structure : public engine::GameObject {
    public:
     Structure();
     virtual ~Structure() = default;
@@ -16,6 +16,6 @@ class Structure : public GameObject {
     float width;
     float height;
 
-    Transform& transform;
-    Sprite& sprite;
+    engine::Transform& transform;
+    engine::Sprite& sprite;
 };

@@ -2,6 +2,8 @@
 
 #include "../gameobject.h"
 
+namespace engine {
+
 Sprite::Sprite(GameObject& gameObject)
     : Component(gameObject),
       loaded(false),
@@ -52,3 +54,5 @@ void Sprite::resetOrigin() {
     auto boundingBox = sprite.getGlobalBounds();
     sprite.setOrigin(boundingBox.width / 2, boundingBox.height / 2);
 }
+
+}  // namespace engine

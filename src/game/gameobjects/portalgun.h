@@ -4,7 +4,7 @@
 
 #include "../../engine/components/transform.h"
 
-class PortalGun : public GameObject {
+class PortalGun : public engine::GameObject {
    public:
     PortalGun();
     virtual ~PortalGun() = default;
@@ -12,5 +12,5 @@ class PortalGun : public GameObject {
     virtual void draw(sf::RenderWindow& window);
 
    private:
-    Transform& transform;
+    engine::Transform& transform;
 };
