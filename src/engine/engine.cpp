@@ -26,17 +26,22 @@ sf::Clock Engine::updateClock;
 sf::Clock Engine::fixedUpdateClock;
 sf::Clock Engine::fpsClock;
 int Engine::fps = 0;
+bool Engine::initialised = false;
+bool Engine::configured = false;
 
 sf::Font Engine::textFont;
 sf::Text Engine::fpsCounter;
 
-void Engine::initialise() {
-    textFont.loadFromFile(Config::getFontFilename("Arial"));
-    fpsCounter.setFont(textFont);
-    fpsCounter.setFillColor(sf::Color::White);
+void Engine::configure(const std::string& configFile) {
+    Config::initialise(configFile);
+    configured = true;
 }
 
 void Engine::run() {
+    if (!initialised) {
+        initialise();
+    }
+
     mainWindow.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32),
                       "Portal 2D");
     // Main loop
@@ -86,6 +91,14 @@ void Engine::run() {
 
 sf::Vector2i Engine::getMousePosition() {
     return sf::Mouse::getPosition(mainWindow);
+}
+
+void Engine::initialise() {
+    textFont.loadFromFile(Config::getFontFilename("Arial"));
+    fpsCounter.setFont(textFont);
+    fpsCounter.setFillColor(sf::Color::White);
+
+    initialised = true;
 }
 
 }  // namespace engine

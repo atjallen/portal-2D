@@ -19,7 +19,7 @@ class Engine {
     static const float FPS_COUNTER_UPDATE_INTERVAL;
     static const float FPS_COUNTER_SMOOTHING;
 
-    static void initialise();
+    static void configure(const std::string& configFile);
     static void run();
 
     template <typename GameObjectType = GameObject>
@@ -43,9 +43,13 @@ class Engine {
     static sf::Clock fixedUpdateClock;
     static sf::Clock fpsClock;
     static int fps;
+    static bool initialised;
+    static bool configured;
 
     static sf::Font textFont;
     static sf::Text fpsCounter;
+
+    static void initialise();
 };
 
 template <typename GameObjectType>

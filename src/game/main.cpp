@@ -8,8 +8,7 @@
 #include "gameobjects/portalgun.h"
 
 int main() {
-    engine::Config::initialise("config.json");
-    engine::Engine::initialise();
+    engine::Engine::configure("config.json");
 
     // Load test level
     LevelLoader levelLoader;
