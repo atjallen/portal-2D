@@ -173,6 +173,7 @@
     <ClCompile Include="src\game\gameobjects\player.cpp" />
     <ClCompile Include="src\engine\components\sprite.cpp" />
     <ClCompile Include="src\engine\components\transform.cpp" />
+    <ClCompile Include="src\util\vector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\engine\components\collider.h" />
@@ -197,6 +198,7 @@
     <ClInclude Include="src\engine\components\transform.h" />
     <ClInclude Include="src\game\util\collision.h" />
     <ClInclude Include="src\util\container.h" />
+    <ClInclude Include="src\util\sfml.h" />
     <ClInclude Include="src\util\vector.h" />
   </ItemGroup>
   <ItemGroup>

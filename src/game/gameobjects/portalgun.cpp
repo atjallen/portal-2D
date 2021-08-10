@@ -5,6 +5,7 @@
 #include "../../engine/engine.h"
 #include "../../engine/raycast.h"
 #include "../../util/vector.h"
+#include "../../util/sfml.h"
 
 PortalGun::PortalGun() : transform(createComponent<engine::Transform>()) {}
 

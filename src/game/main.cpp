@@ -7,6 +7,8 @@
 #include "gameobjects/player.h"
 #include "gameobjects/portalgun.h"
 
+#include "../util/vector.h"
+
 int main() {
     engine::Engine::configure("config.json");
 
