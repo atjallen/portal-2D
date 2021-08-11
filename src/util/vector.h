@@ -57,22 +57,22 @@ class LineSegment : public Line {
 };
 
 template <typename T>
-float length(sf::Vector2<T> a) {
+float length(const sf::Vector2<T>& a) {
     return std::sqrt(a.x * a.x + a.y * a.y);
 }
 
 template <typename T>
-sf::Vector2<T> normalize(sf::Vector2<T> a) {
+sf::Vector2<T> normalize(const sf::Vector2<T>& a) {
     return a / length(a);
 }
 
 template <typename T>
-float dot(sf::Vector2<T> a, sf::Vector2<T> b) {
+float dot(const sf::Vector2<T>& a, const sf::Vector2<T>& b) {
     return a.x * b.x + a.y * b.y;
 };
 
 template <typename T>
-float angleBetween(sf::Vector2<T> a, sf::Vector2<T> b) {
+float angleBetween(const sf::Vector2<T>& a, const sf::Vector2<T>& b) {
     return std::atan2(b.y, b.x) - std::atan2(a.y, a.x);
 }
 
@@ -92,7 +92,7 @@ sf::Vector2<T> angleToVector(T angle) {
 }
 
 template <typename T>
-float vectorToAngle(sf::Vector2<T> vector) {
+float vectorToAngle(const sf::Vector2<T>& vector) {
     return std::atan2(vector.y, vector.x);
 }
 
