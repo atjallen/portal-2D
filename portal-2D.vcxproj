@@ -164,6 +164,7 @@
     <ClCompile Include="src\game\gameobjects\floor.cpp" />
     <ClCompile Include="src\engine\gameobject.cpp" />
     <ClCompile Include="src\engine\gameobjectmanager.cpp" />
+    <ClCompile Include="src\game\gameobjects\portal.cpp" />
     <ClCompile Include="src\game\gameobjects\portalgun.cpp" />
     <ClCompile Include="src\game\gameobjects\structure.cpp" />
     <ClCompile Include="src\game\gameobjects\wall.cpp" />
@@ -180,6 +181,7 @@
     <ClInclude Include="src\engine\components\component.h" />
     <ClInclude Include="src\engine\components\physics.h" />
     <ClInclude Include="src\engine\errors.h" />
+    <ClInclude Include="src\game\gameobjects\portal.h" />
     <ClInclude Include="src\game\gameobjects\portalgun.h" />
     <ClInclude Include="src\game\gameobjects\wallnocollision.h" />
     <ClInclude Include="src\engine\config.h" />

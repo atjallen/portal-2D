@@ -4,6 +4,7 @@
       "Ceiling": "res/textures/ceiling.png",
       "Floor": "res/textures/floor.png",
       "Player": "res/textures/player.png",
+      "Portal": "res/textures/portal.png",
       "Wall": "res/textures/wall.png"
     },
     "images": {

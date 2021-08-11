@@ -87,6 +87,14 @@ void Player::fixedUpdate(const sf::Time& frameTime) {
             physics.setHorizontalVelocity(-maxRunSpeed);
         }
     }
+
+    // Fire portal
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+        portalGun->firePortalA();
+    }
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
+        portalGun->firePortalB();
+    }
 }
 
 void Player::setPortalGun(PortalGun& portalGun) {
