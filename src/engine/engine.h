@@ -22,14 +22,16 @@ class Engine {
     static void configure(const std::string& configFile);
     static void run();
 
+    template <typename GameObjectType = GameObject, typename... ConstructorArgs>
+    static GameObjectType& createGameObject(
+        const std::string& name,
+        const ConstructorArgs&... constructorArgs);
+
     template <typename GameObjectType = GameObject>
     static GameObjectType& getGameObject(const std::string& name);
 
     template <typename GameObjectType>
     static std::set<GameObjectType*> getAllGameObjects();
-
-    template <typename GameObjectType = GameObject>
-    static GameObjectType& createGameObject(const std::string& name);
 
     template <typename ComponentType>
     static std::set<ComponentType*> getAllComponents();
@@ -52,6 +54,13 @@ class Engine {
     static void initialise();
 };
 
+template <typename GameObjectType, typename... ConstructorArgs>
+inline GameObjectType& Engine::createGameObject(
+    const std::string& name,
+    const ConstructorArgs&... constructorArgs) {
+    return gameObjectManager.create<GameObjectType>(name, constructorArgs...);
+}
+
 template <typename GameObjectType>
 inline GameObjectType& Engine::getGameObject(const std::string& name) {
     return gameObjectManager.get<GameObjectType>(name);
@@ -60,11 +69,6 @@ inline GameObjectType& Engine::getGameObject(const std::string& name) {
 template <typename GameObjectType>
 inline std::set<GameObjectType*> Engine::getAllGameObjects() {
     return gameObjectManager.getAll<GameObjectType>();
-}
-
-template <typename GameObjectType>
-inline GameObjectType& Engine::createGameObject(const std::string& name) {
-    return gameObjectManager.create<GameObjectType>(name);
 }
 
 template <typename ComponentType>

@@ -15,8 +15,9 @@ class GameObjectManager {
     GameObjectManager() = default;
     ~GameObjectManager() = default;
 
-    template <typename GameObjectType = GameObject>
-    GameObjectType& create(const std::string& name);
+    template <typename GameObjectType = GameObject, typename... ConstructorArgs>
+    GameObjectType& create(const std::string& name,
+                           const ConstructorArgs&... constructorArgs);
     template <typename GameObjectType = GameObject>
     GameObjectType& get(const std::string& name);
     template <typename GameObjectType>
@@ -33,11 +34,14 @@ class GameObjectManager {
     std::map<std::string, std::unique_ptr<GameObject>> nameToGameObjectPtr;
 };
 
-template <typename GameObjectType>
-inline GameObjectType& GameObjectManager::create(const std::string& name) {
+template <typename GameObjectType, typename... ConstructorArgs>
+inline GameObjectType& GameObjectManager::create(
+    const std::string& name,
+    const ConstructorArgs&... constructorArgs) {
     static_assert(std::is_base_of<GameObject, GameObjectType>::value,
                   "Class not subclass of GameObject");
-    nameToGameObjectPtr[name] = std::make_unique<GameObjectType>();
+    nameToGameObjectPtr[name] =
+        std::make_unique<GameObjectType>(constructorArgs...);
     return static_cast<GameObjectType&>(*nameToGameObjectPtr[name]);
 }
 

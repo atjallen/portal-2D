@@ -18,8 +18,8 @@ class GameObject {
     GameObject() = default;
     virtual ~GameObject() = default;
 
-    template <typename ComponentType>
-    ComponentType& createComponent();
+    template <typename ComponentType, typename... ConstructorArgs>
+    ComponentType& createComponent(const ConstructorArgs&... constructorArgs);
     template <typename ComponentType>
     ComponentType* getComponent();
 
@@ -31,11 +31,13 @@ class GameObject {
     std::vector<std::unique_ptr<Component>> componentPtrs;
 };
 
-template <typename ComponentType>
-inline ComponentType& GameObject::createComponent() {
+template <typename ComponentType, typename... ConstructorArgs>
+inline ComponentType& GameObject::createComponent(
+    const ConstructorArgs&... constructorArgs) {
     static_assert(std::is_base_of<Component, ComponentType>::value,
                   "Class not subclass of Component");
-    componentPtrs.push_back(std::make_unique<ComponentType>(*this));
+    componentPtrs.push_back(
+        std::make_unique<ComponentType>(*this, constructorArgs...));
     return static_cast<ComponentType&>(*componentPtrs.back());
 }
 
