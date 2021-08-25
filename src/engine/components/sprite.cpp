@@ -14,6 +14,13 @@ Sprite::Sprite(GameObject& gameObject, const std::string& filename)
     loadTexture(filename);
 }
 
+Sprite::Sprite(GameObject& gameObject,
+               const std::string& filename,
+               const sf::Vector2f& dimensions)
+    : Sprite(gameObject, filename) {
+    setDimensions(dimensions);
+}
+
 void Sprite::draw(sf::RenderWindow& window) {
     if (loaded) {
         sprite.setPosition(transform.getPosition());

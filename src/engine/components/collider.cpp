@@ -13,6 +13,11 @@ Collider::Collider(GameObject& gameObject)
       transform(*gameObject.getComponent<Transform>()),
       physics(*gameObject.getComponent<Physics>()) {}
 
+Collider::Collider(GameObject& gameObject, const sf::Vector2f& dimensions)
+    : Collider(gameObject) {
+    setBoundingBoxDimensions(dimensions);
+}
+
 void Collider::fixedUpdate(const sf::Time& frameTime) {
     if (!kinematic) {
         auto colliders = Engine::getAllComponents<Collider>();

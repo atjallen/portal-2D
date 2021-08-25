@@ -11,6 +11,9 @@ class Sprite : public Component {
    public:
     Sprite(GameObject& gameObject);
     Sprite(GameObject& gameObject, const std::string& filename);
+    Sprite(GameObject& gameObject,
+           const std::string& filename,
+           const sf::Vector2f& dimensions);
     virtual ~Sprite() = default;
 
     virtual void draw(sf::RenderWindow& window);

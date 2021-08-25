@@ -1,14 +1,15 @@
 #pragma once
 
 #include "component.h"
-#include "transform.h"
 #include "physics.h"
+#include "transform.h"
 
 namespace engine {
 
 class Collider : public Component {
    public:
     Collider(GameObject& gameObject);
+    Collider(GameObject& gameObject, const sf::Vector2f& dimensions);
     virtual ~Collider() = default;
 
     virtual void fixedUpdate(const sf::Time& frameTime);

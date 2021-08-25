@@ -12,6 +12,7 @@
 class Player : public engine::GameObject {
    public:
     Player();
+    Player(const sf::Vector2f& initialPosition);
     virtual ~Player() = default;
 
     virtual void update(const sf::Time& frameTime);

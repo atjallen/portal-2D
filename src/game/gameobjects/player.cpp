@@ -15,12 +15,16 @@ Player::Player()
       transform(createComponent<engine::Transform>()),
       physics(createComponent<engine::Physics>()),
       collider(createComponent<engine::Collider>()),
-      sprite(createComponent<engine::Sprite>()) {
-    sprite.loadTexture(engine::Config::getTextureFilename("Player"));
+      sprite(createComponent<engine::Sprite>(
+          engine::Config::getTextureFilename("Player"))) {
     sprite.getSprite().setColor(sf::Color::Red);
     auto spriteBoundingBox = sprite.getSprite().getGlobalBounds();
     collider.setBoundingBoxDimensions(
         sf::Vector2f(spriteBoundingBox.width, spriteBoundingBox.height));
+}
+
+Player::Player(const sf::Vector2f& initialPosition) : Player() {
+    transform.setPosition(initialPosition);
 }
 
 void Player::update(const sf::Time& frameTime) {

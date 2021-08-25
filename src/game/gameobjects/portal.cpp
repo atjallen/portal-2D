@@ -2,9 +2,9 @@
 
 Portal::Portal()
     : transform(createComponent<engine::Transform>()),
-      sprite(createComponent<engine::Sprite>()),
+      sprite(createComponent<engine::Sprite>(
+          engine::Config::getTextureFilename("Portal"))),
       collider(createComponent<engine::Collider>()) {
-    sprite.loadTexture(engine::Config::getTextureFilename("Portal"));
     sprite.getSprite().setColor(sf::Color::Blue);
     auto spriteBoundingBox = sprite.getSprite().getGlobalBounds();
     collider.setBoundingBoxDimensions(
