@@ -16,8 +16,7 @@ class GameObjectManager {
     ~GameObjectManager() = default;
 
     template <typename GameObjectType = GameObject, typename... ConstructorArgs>
-    GameObjectType& create(const std::string& name,
-                           const ConstructorArgs&... constructorArgs);
+    GameObjectType& create(const std::string& name, const ConstructorArgs&... constructorArgs);
     template <typename GameObjectType = GameObject>
     GameObjectType& get(const std::string& name);
     template <typename GameObjectType>
@@ -35,13 +34,9 @@ class GameObjectManager {
 };
 
 template <typename GameObjectType, typename... ConstructorArgs>
-inline GameObjectType& GameObjectManager::create(
-    const std::string& name,
-    const ConstructorArgs&... constructorArgs) {
-    static_assert(std::is_base_of<GameObject, GameObjectType>::value,
-                  "Class not subclass of GameObject");
-    nameToGameObjectPtr[name] =
-        std::make_unique<GameObjectType>(constructorArgs...);
+inline GameObjectType& GameObjectManager::create(const std::string& name, const ConstructorArgs&... constructorArgs) {
+    static_assert(std::is_base_of<GameObject, GameObjectType>::value, "Class not subclass of GameObject");
+    nameToGameObjectPtr[name] = std::make_unique<GameObjectType>(constructorArgs...);
     return static_cast<GameObjectType&>(*nameToGameObjectPtr[name]);
 }
 
@@ -64,8 +59,7 @@ inline std::set<GameObjectType*> GameObjectManager::getAll() {
     std::set<GameObjectType*> gameObjects;
     for (auto& nameGameObjectPtrPair : nameToGameObjectPtr) {
         if (typeid(*nameGameObjectPtrPair.second) == typeid(GameObjectType)) {
-            gameObjects.insert(static_cast<GameObjectType*>(
-                nameGameObjectPtrPair.second.get()));
+            gameObjects.insert(static_cast<GameObjectType*>(nameGameObjectPtrPair.second.get()));
         }
     }
     return gameObjects;
@@ -75,8 +69,7 @@ template <typename ComponentType>
 inline std::set<ComponentType*> GameObjectManager::getAllComponents() {
     std::set<ComponentType*> components;
     for (auto& nameGameObjectPtrPair : nameToGameObjectPtr) {
-        auto* collider =
-            nameGameObjectPtrPair.second->getComponent<ComponentType>();
+        auto* collider = nameGameObjectPtrPair.second->getComponent<ComponentType>();
         if (collider) {
             components.insert(collider);
         }

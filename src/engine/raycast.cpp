@@ -12,15 +12,12 @@ namespace engine {
 
 namespace raycast {
 
-HitInfo::HitInfo()
-    : hit(false), hitPosition(sf::Vector2f()), collider(nullptr) {}
+HitInfo::HitInfo() : hit(false), hitPosition(sf::Vector2f()), collider(nullptr) {}
 
 HitInfo::HitInfo(bool hit, const sf::Vector2f& hitPosition, Collider* collider)
     : hit(hit), hitPosition(hitPosition), collider(collider) {}
 
-HitInfo raycast(const sf::Vector2f& position,
-                float angle,
-                const std::set<Collider*>& exclude) {
+HitInfo raycast(const sf::Vector2f& position, float angle, const std::set<Collider*>& exclude) {
     return raycast(util::Ray(position, angle), exclude);
 }
 
@@ -39,13 +36,11 @@ HitInfo raycast(const util::Ray& ray, const std::set<Collider*>& exclude) {
                 sf::Vector2f& segmentStart = corners[i];
                 sf::Vector2f& segmentEnd = corners[(i + 1) % 4];
                 sf::Vector2f segmentVector = segmentEnd - segmentStart;
-                util::LineSegment segment(segmentStart, segmentVector,
-                                          util::length(segmentVector));
+                util::LineSegment segment(segmentStart, segmentVector, util::length(segmentVector));
 
                 bool doesIntersect;
                 sf::Vector2f intersectionPoint;
-                std::tie(doesIntersect, intersectionPoint) =
-                    ray.intersect(segment);
+                std::tie(doesIntersect, intersectionPoint) = ray.intersect(segment);
                 if (doesIntersect) {
                     hits.emplace_back(true, intersectionPoint, colliderPtr);
                 }
@@ -58,11 +53,9 @@ HitInfo raycast(const util::Ray& ray, const std::set<Collider*>& exclude) {
     }
 
     // Return the closest hit
-    return *std::min_element(
-        hits.begin(), hits.end(), [&](const auto& hitA, const auto& hitB) {
-            return util::length(hitA.hitPosition - ray.getOrigin()) <
-                   util::length(hitB.hitPosition - ray.getOrigin());
-        });
+    return *std::min_element(hits.begin(), hits.end(), [&](const auto& hitA, const auto& hitB) {
+        return util::length(hitA.hitPosition - ray.getOrigin()) < util::length(hitB.hitPosition - ray.getOrigin());
+    });
 }
 
 }  // namespace raycast

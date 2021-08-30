@@ -5,18 +5,13 @@
 namespace engine {
 
 Sprite::Sprite(GameObject& gameObject)
-    : Component(gameObject),
-      loaded(false),
-      transform(*gameObject.getComponent<Transform>()) {}
+    : Component(gameObject), loaded(false), transform(*gameObject.getComponent<Transform>()) {}
 
-Sprite::Sprite(GameObject& gameObject, const std::string& filename)
-    : Sprite(gameObject) {
+Sprite::Sprite(GameObject& gameObject, const std::string& filename) : Sprite(gameObject) {
     loadTexture(filename);
 }
 
-Sprite::Sprite(GameObject& gameObject,
-               const std::string& filename,
-               const sf::Vector2f& dimensions)
+Sprite::Sprite(GameObject& gameObject, const std::string& filename, const sf::Vector2f& dimensions)
     : Sprite(gameObject, filename) {
     setDimensions(dimensions);
 }
@@ -40,8 +35,7 @@ sf::Sprite& Sprite::getSprite() {
 
 void Sprite::setDimensions(const sf::Vector2f& dimensions) {
     auto boundingBox = sprite.getGlobalBounds();
-    sprite.setTextureRect(sf::Rect<int>(boundingBox.left, boundingBox.top,
-                                        dimensions.x, dimensions.y));
+    sprite.setTextureRect(sf::Rect<int>(boundingBox.left, boundingBox.top, dimensions.x, dimensions.y));
     resetOrigin();
 }
 

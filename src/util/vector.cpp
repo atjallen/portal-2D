@@ -5,8 +5,7 @@ namespace util {
 Line::Line(const sf::Vector2f& origin, const sf::Vector2f& direction)
     : origin(origin), direction(util::normalize(direction)) {}
 
-Line::Line(const sf::Vector2f& origin, float angle)
-    : Line(origin, angleToVector(angle)) {}
+Line::Line(const sf::Vector2f& origin, float angle) : Line(origin, angleToVector(angle)) {}
 
 std::tuple<bool, sf::Vector2f> Line::intersect(const Line& other) const {
     bool intersects;
@@ -41,12 +40,9 @@ sf::Vector2f Line::getDirection() const {
 //   other = (x2, y2) + b(u2, v2)
 // then the intersection distance is the value of a at the point at which the
 // two lines intersect
-std::tuple<bool, float> Line::calculateIntersectionDistance(
-    const Line& other) const {
-    float x1 = this->origin.x, y1 = this->origin.y, u1 = this->direction.x,
-          v1 = this->direction.y;
-    float x2 = other.origin.x, y2 = other.origin.y, u2 = other.direction.x,
-          v2 = other.direction.y;
+std::tuple<bool, float> Line::calculateIntersectionDistance(const Line& other) const {
+    float x1 = this->origin.x, y1 = this->origin.y, u1 = this->direction.x, v1 = this->direction.y;
+    float x2 = other.origin.x, y2 = other.origin.y, u2 = other.direction.x, v2 = other.direction.y;
 
     // By my calculations, the intersection distance of the two lines defined as
     // above is
@@ -76,13 +72,10 @@ bool Ray::validate(float id) const {
     return Line::validate(id) && id >= 0;
 }
 
-LineSegment::LineSegment(const sf::Vector2f& origin,
-                         const sf::Vector2f& direction,
-                         float length)
+LineSegment::LineSegment(const sf::Vector2f& origin, const sf::Vector2f& direction, float length)
     : Line(origin, direction), length(length) {}
 
-LineSegment::LineSegment(const sf::Vector2f& origin, float angle, float length)
-    : Line(origin, angle), length(length) {}
+LineSegment::LineSegment(const sf::Vector2f& origin, float angle, float length) : Line(origin, angle), length(length) {}
 
 float LineSegment::getLength() const {
     return length;

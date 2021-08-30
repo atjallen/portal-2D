@@ -20,13 +20,11 @@ void Physics::fixedUpdate(const sf::Time& frameTime) {
 
     // Restrict velocity
     if (std::abs(velocity.x) > maxHorizontalVelocity) {
-        velocity.x =
-            velocity.x > 0 ? maxHorizontalVelocity : -maxHorizontalVelocity;
+        velocity.x = velocity.x > 0 ? maxHorizontalVelocity : -maxHorizontalVelocity;
     }
 
     if (std::abs(velocity.y) > maxVerticalVelocity) {
-        velocity.y =
-            velocity.y > 0 ? maxVerticalVelocity : -maxVerticalVelocity;
+        velocity.y = velocity.y > 0 ? maxVerticalVelocity : -maxVerticalVelocity;
     }
 
     // Apply gravity

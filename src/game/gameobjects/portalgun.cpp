@@ -43,8 +43,7 @@ void PortalGun::firePortal(const std::string& name, const sf::Color& color) {
     auto hitInfo = raycast();
     if (hitInfo.hit) {
         auto& portal = engine::Engine::createGameObject<Portal>(name);
-        portal.getComponent<engine::Transform>()->setPosition(
-            hitInfo.hitPosition);
+        portal.getComponent<engine::Transform>()->setPosition(hitInfo.hitPosition);
         portal.setColor(color);
     }
 }
@@ -53,6 +52,5 @@ engine::raycast::HitInfo PortalGun::raycast() {
     auto& player = engine::Engine::getGameObject("Player");
     auto origin = transform.getPosition();
     auto angle = transform.getRotationRads();
-    return engine::raycast::raycast(origin, angle,
-                                    {player.getComponent<engine::Collider>()});
+    return engine::raycast::raycast(origin, angle, {player.getComponent<engine::Collider>()});
 }

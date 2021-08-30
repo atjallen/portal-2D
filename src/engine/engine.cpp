@@ -42,8 +42,7 @@ void Engine::run() {
         initialise();
     }
 
-    mainWindow.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32),
-                      "Portal 2D");
+    mainWindow.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32), "Portal 2D");
     // Main loop
     while (true) {
         // Clear window
@@ -51,12 +50,10 @@ void Engine::run() {
 
         // Update fps
         fps = (fps * FPS_COUNTER_SMOOTHING) +
-              (1.0f / updateClock.getElapsedTime().asSeconds() *
-               (1.0f - FPS_COUNTER_SMOOTHING));
+              (1.0f / updateClock.getElapsedTime().asSeconds() * (1.0f - FPS_COUNTER_SMOOTHING));
 
         // Update and draw fps counter
-        if (fpsClock.getElapsedTime().asSeconds() >
-            FPS_COUNTER_UPDATE_INTERVAL) {
+        if (fpsClock.getElapsedTime().asSeconds() > FPS_COUNTER_UPDATE_INTERVAL) {
             fpsClock.restart();
             fpsCounter.setString("FPS: " + std::to_string(fps));
         }
@@ -66,8 +63,7 @@ void Engine::run() {
         gameObjectManager.updateAll(updateClock.restart());
 
         // Fixed update game objects
-        if (fixedUpdateClock.getElapsedTime().asSeconds() >
-            FIXED_UPDATE_INTERVAL) {
+        if (fixedUpdateClock.getElapsedTime().asSeconds() > FIXED_UPDATE_INTERVAL) {
             gameObjectManager.fixedUpdateAll(fixedUpdateClock.restart());
         }
 

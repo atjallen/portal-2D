@@ -6,8 +6,7 @@
 
 namespace engine {
 
-Transform::Transform(GameObject& gameObject)
-    : Component(gameObject), Transformable() {}
+Transform::Transform(GameObject& gameObject) : Component(gameObject), Transformable() {}
 
 void Transform::setPositionX(float x) {
     setPosition(x, getPosition().y);

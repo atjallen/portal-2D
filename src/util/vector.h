@@ -23,8 +23,7 @@ class Line {
     sf::Vector2f getDirection() const;
 
    protected:
-    std::tuple<bool, float> calculateIntersectionDistance(
-        const Line& other) const;
+    std::tuple<bool, float> calculateIntersectionDistance(const Line& other) const;
 
     virtual bool validate(float id) const;
 
@@ -42,9 +41,7 @@ class Ray : public Line {
 
 class LineSegment : public Line {
    public:
-    LineSegment(const sf::Vector2f& origin,
-                const sf::Vector2f& direction,
-                float length);
+    LineSegment(const sf::Vector2f& origin, const sf::Vector2f& direction, float length);
     LineSegment(const sf::Vector2f& origin, float angle, float length);
 
     float getLength() const;
@@ -98,8 +95,7 @@ float vectorToAngle(const sf::Vector2<T>& vector) {
 
 template <typename T>
 std::array<sf::Vector2<T>, 4> rectToPoints(const sf::Rect<T>& rect) {
-    return {sf::Vector2<T>(rect.left, rect.top),
-            sf::Vector2<T>(rect.left + rect.width, rect.top),
+    return {sf::Vector2<T>(rect.left, rect.top), sf::Vector2<T>(rect.left + rect.width, rect.top),
             sf::Vector2<T>(rect.left + rect.width, rect.top + rect.height),
             sf::Vector2<T>(rect.left, rect.top + rect.height)};
 }

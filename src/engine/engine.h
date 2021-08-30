@@ -23,9 +23,7 @@ class Engine {
     static void run();
 
     template <typename GameObjectType = GameObject, typename... ConstructorArgs>
-    static GameObjectType& createGameObject(
-        const std::string& name,
-        const ConstructorArgs&... constructorArgs);
+    static GameObjectType& createGameObject(const std::string& name, const ConstructorArgs&... constructorArgs);
 
     template <typename GameObjectType = GameObject>
     static GameObjectType& getGameObject(const std::string& name);
@@ -55,9 +53,7 @@ class Engine {
 };
 
 template <typename GameObjectType, typename... ConstructorArgs>
-inline GameObjectType& Engine::createGameObject(
-    const std::string& name,
-    const ConstructorArgs&... constructorArgs) {
+inline GameObjectType& Engine::createGameObject(const std::string& name, const ConstructorArgs&... constructorArgs) {
     return gameObjectManager.create<GameObjectType>(name, constructorArgs...);
 }
 

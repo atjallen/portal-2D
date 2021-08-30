@@ -6,14 +6,12 @@ namespace util {
 
 template <typename ContainerType, typename ElementType>
 bool contains(const ContainerType& container, const ElementType& element) {
-    return std::find(container.begin(), container.end(), element) !=
-           container.end();
+    return std::find(container.begin(), container.end(), element) != container.end();
 }
 
 template <typename ContainerType, typename UnaryPredicate>
 bool containsIf(const ContainerType& container, UnaryPredicate p) {
-    return std::find_if(container.begin(), container.end(), p) !=
-           container.end();
+    return std::find_if(container.begin(), container.end(), p) != container.end();
 }
 
 template <typename ContainerType, typename ElementType>

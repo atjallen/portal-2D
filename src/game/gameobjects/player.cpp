@@ -15,12 +15,10 @@ Player::Player()
       transform(createComponent<engine::Transform>()),
       physics(createComponent<engine::Physics>()),
       collider(createComponent<engine::Collider>()),
-      sprite(createComponent<engine::Sprite>(
-          engine::Config::getTextureFilename("Player"))) {
+      sprite(createComponent<engine::Sprite>(engine::Config::getTextureFilename("Player"))) {
     sprite.getSprite().setColor(sf::Color::Red);
     auto spriteBoundingBox = sprite.getSprite().getGlobalBounds();
-    collider.setBoundingBoxDimensions(
-        sf::Vector2f(spriteBoundingBox.width, spriteBoundingBox.height));
+    collider.setBoundingBoxDimensions(sf::Vector2f(spriteBoundingBox.width, spriteBoundingBox.height));
 }
 
 Player::Player(const sf::Vector2f& initialPosition) : Player() {
@@ -31,10 +29,8 @@ void Player::update(const sf::Time& frameTime) {
     GameObject::update(frameTime);
 
     if (portalGun) {
-        portalGun->getComponent<engine::Transform>()->setPosition(
-            transform.getPosition() + sf::Vector2f(30, 0));
-        portalGun->getComponent<engine::Transform>()->lookAt(
-            sf::Vector2f(engine::Engine::getMousePosition()));
+        portalGun->getComponent<engine::Transform>()->setPosition(transform.getPosition() + sf::Vector2f(30, 0));
+        portalGun->getComponent<engine::Transform>()->lookAt(sf::Vector2f(engine::Engine::getMousePosition()));
     }
 }
 

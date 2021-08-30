@@ -13,8 +13,7 @@ Collider::Collider(GameObject& gameObject)
       transform(*gameObject.getComponent<Transform>()),
       physics(*gameObject.getComponent<Physics>()) {}
 
-Collider::Collider(GameObject& gameObject, const sf::Vector2f& dimensions)
-    : Collider(gameObject) {
+Collider::Collider(GameObject& gameObject, const sf::Vector2f& dimensions) : Collider(gameObject) {
     setBoundingBoxDimensions(dimensions);
 }
 
@@ -23,9 +22,7 @@ void Collider::fixedUpdate(const sf::Time& frameTime) {
         auto colliders = Engine::getAllComponents<Collider>();
         for (auto* colliderPtr : colliders) {
             sf::Rect<float> intersection;
-            if (colliderPtr != this &&
-                this->getBoundingBox().intersects(colliderPtr->getBoundingBox(),
-                                                  intersection)) {
+            if (colliderPtr != this && this->getBoundingBox().intersects(colliderPtr->getBoundingBox(), intersection)) {
                 // Resolve collider
                 //
                 // TODO: Handle collider between two non-kinematic colliders
@@ -39,24 +36,20 @@ void Collider::fixedUpdate(const sf::Time& frameTime) {
                     // Horizontal collider
                     if (physics.getVelocity().x > 0) {
                         // Rightwards collider
-                        transform.setPositionX(transform.getPosition().x -
-                                               intersection.width);
+                        transform.setPositionX(transform.getPosition().x - intersection.width);
                     } else {
                         // Leftwards collider
-                        transform.setPositionX(transform.getPosition().x +
-                                               intersection.width);
+                        transform.setPositionX(transform.getPosition().x + intersection.width);
                     }
                     physics.setHorizontalVelocity(0);
                 } else {
                     // Vertical collider
                     if (physics.getVelocity().y > 0) {
                         // Downwards collider
-                        transform.setPositionY(transform.getPosition().y -
-                                               intersection.height);
+                        transform.setPositionY(transform.getPosition().y - intersection.height);
                     } else {
                         // Upwards collider
-                        transform.setPositionY(transform.getPosition().y +
-                                               intersection.height);
+                        transform.setPositionY(transform.getPosition().y + intersection.height);
                     }
                     physics.setVerticalVelocity(0);
                 }
@@ -67,9 +60,8 @@ void Collider::fixedUpdate(const sf::Time& frameTime) {
 
 sf::Rect<float> Collider::getBoundingBox() const {
     auto position = transform.getPosition();
-    return sf::Rect<float>(position.x - (boundingBoxWidth / 2),
-                           position.y - (boundingBoxHeight / 2),
-                           boundingBoxWidth, boundingBoxHeight);
+    return sf::Rect<float>(position.x - (boundingBoxWidth / 2), position.y - (boundingBoxHeight / 2), boundingBoxWidth,
+                           boundingBoxHeight);
 }
 
 void Collider::setBoundingBoxDimensions(const sf::Vector2f& dimensions) {

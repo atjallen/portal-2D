@@ -25,9 +25,7 @@ struct HitInfo {
 const float RAYCAST_INTERVAL = 10.0f;
 const float RAYCAST_MAX = 10000;
 
-HitInfo raycast(const sf::Vector2f& position,
-                float angle,
-                const std::set<Collider*>& exclude = {});
+HitInfo raycast(const sf::Vector2f& position, float angle, const std::set<Collider*>& exclude = {});
 
 HitInfo raycast(const util::Ray& ray, const std::set<Collider*>& exclude = {});
 

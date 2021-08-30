@@ -32,21 +32,17 @@ class GameObject {
 };
 
 template <typename ComponentType, typename... ConstructorArgs>
-inline ComponentType& GameObject::createComponent(
-    const ConstructorArgs&... constructorArgs) {
-    static_assert(std::is_base_of<Component, ComponentType>::value,
-                  "Class not subclass of Component");
-    componentPtrs.push_back(
-        std::make_unique<ComponentType>(*this, constructorArgs...));
+inline ComponentType& GameObject::createComponent(const ConstructorArgs&... constructorArgs) {
+    static_assert(std::is_base_of<Component, ComponentType>::value, "Class not subclass of Component");
+    componentPtrs.push_back(std::make_unique<ComponentType>(*this, constructorArgs...));
     return static_cast<ComponentType&>(*componentPtrs.back());
 }
 
 template <typename ComponentType>
 inline ComponentType* GameObject::getComponent() {
-    auto componentPtrIt = std::find_if(
-        componentPtrs.begin(), componentPtrs.end(), [](auto& componentPtr) {
-            return typeid(*componentPtr) == typeid(ComponentType);
-        });
+    auto componentPtrIt = std::find_if(componentPtrs.begin(), componentPtrs.end(), [](auto& componentPtr) {
+        return typeid(*componentPtr) == typeid(ComponentType);
+    });
     if (componentPtrIt == componentPtrs.end()) {
         return nullptr;
     } else {

@@ -8,8 +8,7 @@
 class Structure : public engine::GameObject {
    public:
     Structure();
-    Structure(const sf::Vector2f& initialPosition,
-              const sf::Vector2f& dimensions);
+    Structure(const sf::Vector2f& initialPosition, const sf::Vector2f& dimensions);
     virtual ~Structure() = default;
 
     virtual void setDimensions(const sf::Vector2f& dimensions);

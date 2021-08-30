@@ -6,7 +6,7 @@
 
 namespace engine {
 
-class GameObject; // Forward declaration to avoid circular import
+class GameObject;  // Forward declaration to avoid circular import
 
 class Component {
    public:
