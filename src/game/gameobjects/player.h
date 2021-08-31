@@ -21,10 +21,14 @@ class Player : public engine::GameObject {
     void setPortalGun(PortalGun& portalGun);
 
    private:
+    const float CLICK_MIN_INTERVAL;
+
     float runAcceleration;
     float jumpPower;
     float floorDrag;
     float maxRunSpeed;
+
+    sf::Clock clickIntervalClock;
 
     PortalGun* portalGun;
 

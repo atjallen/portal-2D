@@ -7,7 +7,8 @@
 #include "../util/collision.h"
 
 Player::Player()
-    : runAcceleration(0.5f),
+    : CLICK_MIN_INTERVAL(0.5),
+      runAcceleration(0.5f),
       jumpPower(10.0f),
       floorDrag(0.5f),
       maxRunSpeed(10.0f),
@@ -89,11 +90,19 @@ void Player::fixedUpdate(const sf::Time& frameTime) {
     }
 
     // Fire portal
-    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-        portalGun->firePortalA();
-    }
-    if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
-        portalGun->firePortalB();
+    if (clickIntervalClock.getElapsedTime().asSeconds() > CLICK_MIN_INTERVAL) {
+        bool leftClickPressed = sf::Mouse::isButtonPressed(sf::Mouse::Left);
+        bool rightClickPressed = sf::Mouse::isButtonPressed(sf::Mouse::Right);
+
+        if (leftClickPressed) {
+            portalGun->firePortalA();
+        } else if (rightClickPressed) {
+            portalGun->firePortalB();
+        }
+
+        if (leftClickPressed || rightClickPressed) {
+            clickIntervalClock.restart();
+        }
     }
 }
 
