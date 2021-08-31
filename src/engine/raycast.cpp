@@ -12,10 +12,11 @@ namespace engine {
 
 namespace raycast {
 
-HitInfo::HitInfo() : hit(false), hitPosition(sf::Vector2f()), collider(nullptr) {}
+HitInfo::HitInfo()
+    : hit(false), hitPosition(sf::Vector2f()), collider(nullptr), segment(sf::Vector2f(), sf::Vector2f(), 0) {}
 
-HitInfo::HitInfo(bool hit, const sf::Vector2f& hitPosition, Collider* collider)
-    : hit(hit), hitPosition(hitPosition), collider(collider) {}
+HitInfo::HitInfo(bool hit, const sf::Vector2f& hitPosition, Collider* collider, const util::LineSegment& segment)
+    : hit(hit), hitPosition(hitPosition), collider(collider), segment(segment) {}
 
 HitInfo raycast(const sf::Vector2f& position, float angle, const std::set<Collider*>& exclude) {
     return raycast(util::Ray(position, angle), exclude);
@@ -42,7 +43,7 @@ HitInfo raycast(const util::Ray& ray, const std::set<Collider*>& exclude) {
                 sf::Vector2f intersectionPoint;
                 std::tie(doesIntersect, intersectionPoint) = ray.intersect(segment);
                 if (doesIntersect) {
-                    hits.emplace_back(true, intersectionPoint, colliderPtr);
+                    hits.emplace_back(true, intersectionPoint, colliderPtr, segment);
                 }
             }
         }

@@ -17,9 +17,10 @@ struct HitInfo {
     bool hit;
     sf::Vector2f hitPosition;
     Collider* collider;
+    util::LineSegment segment;
 
     HitInfo();
-    HitInfo(bool hit, const sf::Vector2f& hitPosition, Collider* collider);
+    HitInfo(bool hit, const sf::Vector2f& hitPosition, Collider* collider, const util::LineSegment& segment);
 };
 
 const float RAYCAST_INTERVAL = 10.0f;

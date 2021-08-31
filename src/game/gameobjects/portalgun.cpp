@@ -45,6 +45,8 @@ void PortalGun::firePortal(const std::string& name, const sf::Color& color) {
         auto& portal = engine::Engine::createGameObject<Portal>(name);
         portal.getComponent<engine::Transform>()->setPosition(hitInfo.hitPosition);
         portal.setColor(color);
+        float hitSegmentAngle = util::vectorToAngle(hitInfo.segment.getDirection());
+        portal.getComponent<engine::Transform>()->setRotationRads(hitSegmentAngle + M_PI / 2.0);
     }
 }
 
