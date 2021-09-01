@@ -2,7 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "../config.h"
+#include "engine/config.h"
 
 namespace engine {
 

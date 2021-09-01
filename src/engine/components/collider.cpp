@@ -1,7 +1,7 @@
 #include "collider.h"
 
-#include "../engine.h"
-#include "../gameobject.h"
+#include "engine/engine.h"
+#include "engine/gameobject.h"
 
 namespace engine {
 

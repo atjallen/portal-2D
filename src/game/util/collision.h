@@ -1,9 +1,9 @@
 #pragma once
 
-#include "../../engine/components/collider.h"
-#include "../../engine/engine.h"
+#include "engine/components/collider.h"
+#include "engine/engine.h"
 
-#include "../gameobjects/floor.h"
+#include "game/gameobjects/floor.h"
 
 namespace gameutil {
 

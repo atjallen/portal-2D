@@ -1,6 +1,6 @@
 #pragma once
 
-#include "structure.h"
+#include "game/gameobjects/structure.h"
 
 class WallNoCollision : public Structure {
    public:

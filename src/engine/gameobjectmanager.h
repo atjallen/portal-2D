@@ -6,7 +6,7 @@
 #include <set>
 #include <vector>
 
-#include "gameobject.h"
+#include "engine/gameobject.h"
 
 namespace engine {
 

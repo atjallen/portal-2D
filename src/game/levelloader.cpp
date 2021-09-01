@@ -2,11 +2,11 @@
 
 #include <fstream>
 
-#include "gameobjects/ceiling.h"
-#include "gameobjects/floor.h"
-#include "gameobjects/player.h"
-#include "gameobjects/wall.h"
-#include "gameobjects/wallnocollision.h"
+#include "game/gameobjects/ceiling.h"
+#include "game/gameobjects/floor.h"
+#include "game/gameobjects/player.h"
+#include "game/gameobjects/wall.h"
+#include "game/gameobjects/wallnocollision.h"
 
 const float LevelLoader::TILE_SIZE = 50.0f;
 

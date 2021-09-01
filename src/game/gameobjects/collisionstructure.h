@@ -2,7 +2,7 @@
 
 #include "structure.h"
 
-#include "../../engine/components/collider.h"
+#include "engine/components/collider.h"
 
 class CollisionStructure : public Structure {
    public:

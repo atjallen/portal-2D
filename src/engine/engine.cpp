@@ -7,10 +7,10 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "config.h"
-#include "gameobject.h"
+#include "engine/config.h"
+#include "engine/gameobject.h"
 
-#include "../util/container.h"
+#include "util/container.h"
 
 namespace engine {
 

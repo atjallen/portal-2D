@@ -1,10 +1,10 @@
 #pragma once
 
-#include "../../engine/gameobject.h"
+#include "engine/gameobject.h"
 
-#include "../../engine/components/collider.h"
-#include "../../engine/components/sprite.h"
-#include "../../engine/components/transform.h"
+#include "engine/components/collider.h"
+#include "engine/components/sprite.h"
+#include "engine/components/transform.h"
 
 class Portal : public engine::GameObject {
    public:

@@ -5,9 +5,9 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "gameobjectmanager.h"
+#include "engine/gameobjectmanager.h"
 
-#include "components/collider.h"
+#include "engine/components/collider.h"
 
 namespace engine {
 

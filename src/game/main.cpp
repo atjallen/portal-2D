@@ -1,14 +1,14 @@
-#include "../engine/config.h"
-#include "../engine/engine.h"
+#include "engine/config.h"
+#include "engine/engine.h"
 
-#include "levelloader.h"
+#include "game/levelloader.h"
 
-#include "gameobjects/floor.h"
-#include "gameobjects/player.h"
-#include "gameobjects/portal.h"
-#include "gameobjects/portalgun.h"
+#include "game/gameobjects/floor.h"
+#include "game/gameobjects/player.h"
+#include "game/gameobjects/portal.h"
+#include "game/gameobjects/portalgun.h"
 
-#include "../util/vector.h"
+#include "util/vector.h"
 
 int main() {
     engine::Engine::configure("config.json");

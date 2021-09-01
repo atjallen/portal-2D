@@ -5,8 +5,8 @@
 
 #include "engine.h"
 
-#include "../util/container.h"
-#include "../util/sfml.h"
+#include "util/container.h"
+#include "util/sfml.h"
 
 namespace engine {
 

@@ -2,8 +2,8 @@
 
 #include <string>
 
-#include "../engine/components/transform.h"
-#include "../engine/engine.h"
+#include "engine/components/transform.h"
+#include "engine/engine.h"
 
 class LevelLoader {
    public:

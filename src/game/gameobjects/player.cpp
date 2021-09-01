@@ -2,9 +2,9 @@
 
 #include <cmath>
 
-#include "../../engine/engine.h"
+#include "engine/engine.h"
 
-#include "../util/collision.h"
+#include "game/util/collision.h"
 
 Player::Player()
     : CLICK_MIN_INTERVAL(0.5),

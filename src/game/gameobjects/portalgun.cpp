@@ -2,12 +2,12 @@
 
 #include <cmath>
 
-#include "../../engine/engine.h"
+#include "engine/engine.h"
 
-#include "../../util/sfml.h"
-#include "../../util/vector.h"
+#include "util/sfml.h"
+#include "util/vector.h"
 
-#include "portal.h"
+#include "game/gameobjects/portal.h"
 
 PortalGun::PortalGun() : transform(createComponent<engine::Transform>()) {}
 

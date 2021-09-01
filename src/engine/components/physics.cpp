@@ -3,7 +3,7 @@
 #include <cmath>
 #include <limits>
 
-#include "../gameobject.h"
+#include "engine/gameobject.h"
 
 namespace engine {
 

@@ -7,9 +7,9 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "config.h"
+#include "engine/config.h"
 
-#include "components/component.h"
+#include "engine/components/component.h"
 
 namespace engine {
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "collisionstructure.h"
+#include "game/gameobjects/collisionstructure.h"
 
 class Floor : public CollisionStructure {
    public:

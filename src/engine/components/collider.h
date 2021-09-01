@@ -1,8 +1,8 @@
 #pragma once
 
-#include "component.h"
-#include "physics.h"
-#include "transform.h"
+#include "engine/components/component.h"
+#include "engine/components/physics.h"
+#include "engine/components/transform.h"
 
 namespace engine {
 

@@ -1,9 +1,9 @@
 #pragma once
 
-#include "../../engine/gameobject.h"
-#include "../../engine/raycast.h"
+#include "engine/gameobject.h"
+#include "engine/raycast.h"
 
-#include "../../engine/components/transform.h"
+#include "engine/components/transform.h"
 
 class PortalGun : public engine::GameObject {
    public:
