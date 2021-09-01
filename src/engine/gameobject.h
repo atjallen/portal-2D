@@ -9,7 +9,7 @@
 
 #include "engine/config.h"
 
-#include "engine/components/component.h"
+#include "engine/component.h"
 
 namespace engine {
 

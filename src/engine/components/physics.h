@@ -1,6 +1,7 @@
 #pragma once
 
-#include "engine/components/component.h"
+#include "engine/component.h"
+
 #include "engine/components/transform.h"
 
 namespace engine {
