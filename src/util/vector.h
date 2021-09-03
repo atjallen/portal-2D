@@ -1,9 +1,8 @@
 #pragma once
 
-#include <array>
 #include <cmath>
 
-#include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
 
 namespace util {
 
@@ -25,13 +24,6 @@ float dot(const sf::Vector2<T>& a, const sf::Vector2<T>& b) {
 template <typename T>
 float angleBetween(const sf::Vector2<T>& a, const sf::Vector2<T>& b) {
     return std::atan2(b.y, b.x) - std::atan2(a.y, a.x);
-}
-
-template <typename T>
-std::array<sf::Vector2<T>, 4> rectToPoints(const sf::Rect<T>& rect) {
-    return {sf::Vector2<T>(rect.left, rect.top), sf::Vector2<T>(rect.left + rect.width, rect.top),
-            sf::Vector2<T>(rect.left + rect.width, rect.top + rect.height),
-            sf::Vector2<T>(rect.left, rect.top + rect.height)};
 }
 
 template <typename T>

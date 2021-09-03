@@ -6,6 +6,7 @@
 #include "engine.h"
 
 #include "util/container.h"
+#include "util/rect.h"
 #include "util/vector.h"
 
 namespace engine {

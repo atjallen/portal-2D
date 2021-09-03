@@ -201,6 +201,7 @@
     <ClInclude Include="src\game\util\collision.h" />
     <ClInclude Include="src\util\container.h" />
     <ClInclude Include="src\util\line.h" />
+    <ClInclude Include="src\util\rect.h" />
     <ClInclude Include="src\util\units.h" />
     <ClInclude Include="src\util\vector.h" />
   </ItemGroup>
