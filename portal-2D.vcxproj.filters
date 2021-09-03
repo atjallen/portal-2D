@@ -146,9 +146,6 @@
     <ClInclude Include="src\engine\raycast.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\util\sfml.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\gameobjects\portal.h">
       <Filter>Header Files</Filter>
     </ClInclude>

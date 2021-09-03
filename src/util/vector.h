@@ -57,4 +57,9 @@ std::array<sf::Vector2<T>, 4> rectToPoints(const sf::Rect<T>& rect) {
             sf::Vector2<T>(rect.left, rect.top + rect.height)};
 }
 
+template <typename T>
+std::ostream& operator<<(std::ostream& os, const sf::Vector2<T>& vector) {
+    return os << "(" << vector.x << ", " << vector.y << ")";
+}
+
 }  // namespace util
