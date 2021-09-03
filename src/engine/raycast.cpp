@@ -7,6 +7,7 @@
 
 #include "util/container.h"
 #include "util/sfml.h"
+#include "util/vector.h"
 
 namespace engine {
 

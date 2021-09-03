@@ -4,10 +4,11 @@
 
 #include "engine/engine.h"
 
+#include "game/gameobjects/portal.h"
+
+#include "util/line.h"
 #include "util/sfml.h"
 #include "util/vector.h"
-
-#include "game/gameobjects/portal.h"
 
 PortalGun::PortalGun() : transform(createComponent<engine::Transform>()) {}
 
