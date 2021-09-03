@@ -2,6 +2,7 @@
 
 #include <tuple>
 
+#include "util/units.h"
 #include "util/vector.h"
 
 namespace util {

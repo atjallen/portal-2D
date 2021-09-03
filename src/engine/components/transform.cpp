@@ -2,6 +2,7 @@
 
 #include <iostream>
 
+#include "util/units.h"
 #include "util/vector.h"
 
 namespace engine {
