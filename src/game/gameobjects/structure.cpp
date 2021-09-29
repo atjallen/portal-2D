@@ -1,15 +1,10 @@
 #include "structure.h"
 
-Structure::Structure()
-    : width(0), height(0), transform(createComponent<engine::Transform>()), sprite(createComponent<engine::Sprite>()) {}
-
-Structure::Structure(const sf::Vector2f& initialPosition, const sf::Vector2f& dimensions) : Structure() {
+Structure::Structure(float width, float height, const sf::Vector2f& initialPosition)
+    : width(width),
+      height(height),
+      transform(createComponent<engine::Transform>()),
+      sprite(createComponent<engine::Sprite>()) {
     transform.setPosition(initialPosition);
-    setDimensions(dimensions);
-}
-
-void Structure::setDimensions(const sf::Vector2f& dimensions) {
-    this->width = dimensions.x;
-    this->height = dimensions.y;
-    sprite.setDimensions(dimensions);
+    sprite.setDimensions(sf::Vector2f(width, height));
 }

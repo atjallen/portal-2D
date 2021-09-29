@@ -8,6 +8,8 @@
 
 #include "engine/gameobject.h"
 
+#include "util/type.h"
+
 namespace engine {
 
 class GameObjectManager {
@@ -58,7 +60,7 @@ template <typename GameObjectType>
 inline std::set<GameObjectType*> GameObjectManager::getAll() {
     std::set<GameObjectType*> gameObjects;
     for (auto& nameGameObjectPtrPair : nameToGameObjectPtr) {
-        if (typeid(*nameGameObjectPtrPair.second) == typeid(GameObjectType)) {
+        if (util::isType<GameObjectType>(*nameGameObjectPtrPair.second)) {
             gameObjects.insert(static_cast<GameObjectType*>(nameGameObjectPtrPair.second.get()));
         }
     }

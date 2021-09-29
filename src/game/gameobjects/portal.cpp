@@ -1,12 +1,13 @@
 #include "portal.h"
 
+#include "engine/components/boxcollider.h"
+
 Portal::Portal()
     : transform(createComponent<engine::Transform>()),
       sprite(createComponent<engine::Sprite>(engine::Config::getTextureFilename("Portal"))),
-      collider(createComponent<engine::Collider>()) {
+      collider(createComponent<engine::BoxCollider>(10, 90)) {
     sprite.getSprite().setColor(sf::Color::Blue);
     auto spriteBoundingBox = sprite.getSprite().getGlobalBounds();
-    collider.setBoundingBoxDimensions(sf::Vector2f(spriteBoundingBox.width, spriteBoundingBox.height));
     collider.setKinematic(true);
 }
 

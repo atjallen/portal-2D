@@ -7,9 +7,10 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "engine/component.h"
 #include "engine/config.h"
 
-#include "engine/component.h"
+#include "util/type.h"
 
 namespace engine {
 
@@ -40,9 +41,8 @@ inline ComponentType& GameObject::createComponent(const ConstructorArgs&... cons
 
 template <typename ComponentType>
 inline ComponentType* GameObject::getComponent() {
-    auto componentPtrIt = std::find_if(componentPtrs.begin(), componentPtrs.end(), [](auto& componentPtr) {
-        return typeid(*componentPtr) == typeid(ComponentType);
-    });
+    auto componentPtrIt = std::find_if(componentPtrs.begin(), componentPtrs.end(),
+                                       [](auto& componentPtr) { return util::isType<ComponentType>(*componentPtr); });
     if (componentPtrIt == componentPtrs.end()) {
         return nullptr;
     } else {

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <vector>
+
 #include "engine/component.h"
 
 #include "engine/components/physics.h"
@@ -10,25 +12,24 @@ namespace engine {
 class Collider : public Component {
    public:
     Collider(GameObject& gameObject);
-    Collider(GameObject& gameObject, const sf::Vector2f& dimensions);
     virtual ~Collider() = default;
+
+    void setKinematic(bool kinematic);
 
     virtual void fixedUpdate(const sf::Time& frameTime);
 
-    sf::Rect<float> getBoundingBox() const;
-    void setBoundingBoxDimensions(const sf::Vector2f& dimensions);
-    void setKinematic(bool kinematic);
+    virtual bool isColliding(const Collider& other) = 0;
+    virtual bool isTouchingBelow(const Collider& other) = 0;
 
-    bool isColliding(const Collider& other);
-    bool isTouchingBelow(const Collider& other);
+    virtual std::vector<sf::Vector2f> getPoints() const = 0;
 
-   private:
-    float boundingBoxWidth;
-    float boundingBoxHeight;
+   protected:
     bool kinematic;
 
     Transform& transform;
     Physics& physics;
+
+    virtual void handleCollision(const Collider& other) = 0;
 };
 
 }  // namespace engine

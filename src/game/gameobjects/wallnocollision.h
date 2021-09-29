@@ -4,6 +4,6 @@
 
 class WallNoCollision : public Structure {
    public:
-    WallNoCollision();
+    WallNoCollision(float width, float height, const sf::Vector2f& initialPosition);
     virtual ~WallNoCollision() = default;
 };

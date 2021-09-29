@@ -153,8 +153,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\engine\components\boxcollider.cpp" />
     <ClCompile Include="src\engine\components\collider.cpp" />
     <ClCompile Include="src\engine\component.cpp" />
+    <ClCompile Include="src\engine\components\convexshapecollider.cpp" />
     <ClCompile Include="src\engine\components\physics.cpp" />
     <ClCompile Include="src\engine\config.cpp" />
     <ClCompile Include="src\engine\engine.cpp" />
@@ -175,10 +177,13 @@
     <ClCompile Include="src\engine\components\sprite.cpp" />
     <ClCompile Include="src\engine\components\transform.cpp" />
     <ClCompile Include="src\util\line.cpp" />
+    <ClCompile Include="src\util\shape.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\engine\components\boxcollider.h" />
     <ClInclude Include="src\engine\components\collider.h" />
     <ClInclude Include="src\engine\component.h" />
+    <ClInclude Include="src\engine\components\convexshapecollider.h" />
     <ClInclude Include="src\engine\components\physics.h" />
     <ClInclude Include="src\util\errors.h" />
     <ClInclude Include="src\game\gameobjects\portal.h" />
@@ -202,6 +207,8 @@
     <ClInclude Include="src\util\container.h" />
     <ClInclude Include="src\util\line.h" />
     <ClInclude Include="src\util\rect.h" />
+    <ClInclude Include="src\util\shape.h" />
+    <ClInclude Include="src\util\type.h" />
     <ClInclude Include="src\util\units.h" />
     <ClInclude Include="src\util\vector.h" />
   </ItemGroup>

@@ -4,6 +4,6 @@
 
 class Wall : public CollisionStructure {
    public:
-    Wall();
+    Wall(float width, float height, const sf::Vector2f& initialPosition);
     virtual ~Wall() = default;
 };

@@ -8,7 +8,7 @@
 #include "game/gameobjects/portal.h"
 #include "game/gameobjects/portalgun.h"
 
-#include "util/vector.h"
+#include "util/shape.h"
 
 int main() {
     engine::Engine::configure("config.json");

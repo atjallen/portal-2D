@@ -1,10 +1,8 @@
 #include "collisionstructure.h"
 
-CollisionStructure::CollisionStructure() : collider(createComponent<engine::Collider>()) {
-    collider.setKinematic(true);
-}
+#include "engine/components/boxcollider.h"
 
-void CollisionStructure::setDimensions(const sf::Vector2f& dimensions) {
-    Structure::setDimensions(dimensions);
-    collider.setBoundingBoxDimensions(dimensions);
+CollisionStructure::CollisionStructure(float width, float height, const sf::Vector2f& initialPosition)
+    : Structure(width, height, initialPosition), collider(createComponent<engine::BoxCollider>(width, height)) {
+    collider.setKinematic(true);
 }

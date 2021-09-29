@@ -7,11 +7,8 @@
 
 class Structure : public engine::GameObject {
    public:
-    Structure();
-    Structure(const sf::Vector2f& initialPosition, const sf::Vector2f& dimensions);
+    Structure(float width, float height, const sf::Vector2f& initialPosition);
     virtual ~Structure() = default;
-
-    virtual void setDimensions(const sf::Vector2f& dimensions);
 
    protected:
     float width;

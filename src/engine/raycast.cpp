@@ -33,7 +33,7 @@ HitInfo raycast(const util::Ray& ray, const std::set<Collider*>& exclude) {
     std::vector<HitInfo> hits;
     for (auto* colliderPtr : Engine::getAllComponents<Collider>()) {
         if (!util::containsFast(exclude, colliderPtr)) {
-            auto corners = util::rectToPoints(colliderPtr->getBoundingBox());
+            auto corners = colliderPtr->getPoints();
             for (int i = 0; i < 4; i++) {
                 sf::Vector2f& segmentStart = corners[i];
                 sf::Vector2f& segmentEnd = corners[(i + 1) % 4];

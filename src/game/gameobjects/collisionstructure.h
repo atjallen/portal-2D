@@ -6,10 +6,8 @@
 
 class CollisionStructure : public Structure {
    public:
-    CollisionStructure();
+    CollisionStructure(float width, float height, const sf::Vector2f& initialPosition);
     virtual ~CollisionStructure() = default;
-
-    virtual void setDimensions(const sf::Vector2f& dimensions);
 
    protected:
     engine::Collider& collider;

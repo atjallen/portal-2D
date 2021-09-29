@@ -4,6 +4,8 @@
 
 #include "engine/engine.h"
 
+#include "engine/components/boxcollider.h"
+
 #include "game/util/collision.h"
 
 Player::Player()
@@ -15,11 +17,9 @@ Player::Player()
       portalGun(nullptr),
       transform(createComponent<engine::Transform>()),
       physics(createComponent<engine::Physics>()),
-      collider(createComponent<engine::Collider>()),
+      collider(createComponent<engine::BoxCollider>(50, 100)),
       sprite(createComponent<engine::Sprite>(engine::Config::getTextureFilename("Player"))) {
     sprite.getSprite().setColor(sf::Color::Red);
-    auto spriteBoundingBox = sprite.getSprite().getGlobalBounds();
-    collider.setBoundingBoxDimensions(sf::Vector2f(spriteBoundingBox.width, spriteBoundingBox.height));
 }
 
 Player::Player(const sf::Vector2f& initialPosition) : Player() {
