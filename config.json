@@ -1,4 +1,7 @@
 {
+  "debug": {
+    "drawColliders": true
+  },
   "resources": {
     "textures": {
       "Ceiling": "res/textures/ceiling.png",

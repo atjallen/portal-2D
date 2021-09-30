@@ -16,10 +16,11 @@ class Collider : public Component {
 
     void setKinematic(bool kinematic);
 
+    virtual void draw(sf::RenderWindow& window);
     virtual void fixedUpdate(const sf::Time& frameTime);
 
-    virtual bool isColliding(const Collider& other) = 0;
-    virtual bool isTouchingBelow(const Collider& other) = 0;
+    virtual bool isColliding(const Collider& other);
+    virtual bool isTouchingBelow(const Collider& other);
 
     virtual std::vector<sf::Vector2f> getPoints() const = 0;
 
@@ -29,7 +30,7 @@ class Collider : public Component {
     Transform& transform;
     Physics& physics;
 
-    virtual void handleCollision(const Collider& other) = 0;
+    virtual void handleCollision(const Collider& other);
 };
 
 }  // namespace engine

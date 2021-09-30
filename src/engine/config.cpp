@@ -11,6 +11,10 @@ void Config::initialise(const std::string& configFilename) {
     configFileStream >> config;
 }
 
+bool Config::getDebugFlag(const std::string& flagName) {
+    return config["debug"][flagName].get<bool>();
+}
+
 std::string Config::getTextureFilename(const std::string& textureName) {
     return config["resources"]["textures"][textureName].get<std::string>();
 }
